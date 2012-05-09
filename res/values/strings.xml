@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ChargeDemo</string>
+    <string name="app_description">Charge Demo for Credit Card Terminal by Inner Fence</string>
+</resources>

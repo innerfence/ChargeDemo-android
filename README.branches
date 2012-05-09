@@ -1,0 +1,107 @@
+This project uses the git branching model documented here:
+
+http://nvie.com/archives/323
+
+== master ==
+
+The master branch is the generally available production version of the
+software. Each checkin to master is a production release of the
+software.
+
+  Permanent branch
+
+== devel ==
+
+The devel branch is production-ready code that has not yet shipped and
+is intended for the next release. (Expirimental code goes elsewhere.)
+
+  Permanent branch
+
+== hotfix-* ==
+
+Branch from: master
+Merge into: master and devel
+
+Hotfix branches are used whenever a change needs to be shipped based
+on the latest release, bypassing any development from the devel
+branch.
+
+  -- Creating --
+  git checkout -b hotfix-0.1.10 master
+  # Edit files to change version number
+  git commit -am 'Bumped version to 0.1.10'
+
+  -- Finishing --
+  # Merge into master
+  git checkout master
+  git merge --no-ff hotfix-0.1.10
+  git tag 0.1.10
+
+  # Merge into devel
+  git checkout devel
+  git merge --no-ff hotfix-0.1.10
+
+  # Delete the branch
+  git branch -d hotfix-0.1.10
+
+== release-* ==
+
+Branch from: devel
+Merge into: master and devel
+
+Release branches are used to stage changes from devel to
+master. Merges from devel to master are always done via a release
+branch, never directly.
+
+  -- Creating --
+  git checkout -b release-0.2.0 devel
+  # Edit files to change version number
+  git commit -am 'Bumped version to 0.2.0'
+
+  -- Finishing --
+  # Merge into master
+  git checkout master
+  git merge --no-ff release-0.2.0
+  git tag 0.2.0
+
+  # Merge into devel
+  git checkout devel
+  git merge --no-ff release-0.2.0
+
+  # Delete the branch
+  git branch -d release-0.2.0
+
+== devel-* ==
+
+Branch from: devel
+Merge into: devel
+
+Shared feature branches. To share feature branches, I recommend using
+the git_remote_branch ruby gem, which installs the grb commandline
+tool.
+
+  -- Installing git_remote_branch --
+  sudo gem install git_remote_branch
+
+  -- Create a new remote branch and track it --
+  grb create devel-huge-rewrite
+
+  -- Publish a local branch, fix it up to track the new remote --
+  grb publish my-little-feature-that-got-big
+
+== local feature branches ==
+
+Branch from: devel
+Merge into: devel
+
+Name your local feature branches whatever you want. Develop in them
+until a feature is done, then merge into devel. To share experimental
+code or collaborate on larger feature work, see devel-*
+
+  -- Creating --
+  git checkout -b myfeature devel
+
+  -- Finishing --
+  git checkout devel
+  git merge --no-ff myfeature
+  git branch -d myfeature
