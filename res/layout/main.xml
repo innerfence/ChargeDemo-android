@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    >
+  <Button
+      android:id="@+id/charge_button"
+      android:layout_height="fill_parent"
+      android:layout_weight="1"
+      android:layout_width="fill_parent"
+      android:shadowColor="#000000"
+      android:shadowDx="0"
+      android:shadowDy="1"
+      android:shadowRadius="1"
+      android:text="Charge"
+      android:textColor="#324f85"
+      android:textSize="36dp"
+      android:textStyle="bold"
+      />
+</LinearLayout>
