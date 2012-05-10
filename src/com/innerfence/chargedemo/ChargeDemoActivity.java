@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import java.util.HashMap;
 
 public class ChargeDemoActivity extends Activity
 {
@@ -37,6 +38,23 @@ public class ChargeDemoActivity extends Activity
                 // UI alert is displayed in the case that the charge
                 // request cannot be invoked.
                 ChargeRequest chargeRequest = new ChargeRequest();
+
+                // 2-way Integration
+                //
+                // Credit Card Terminal will return to the activity
+                // that started it when the transaction is complete.
+                //
+                // You can also include app-specific parameters by
+                // calling the setExtraParams() method and passing in
+                // a Map<String,String> object. The extra params will
+                // be accessible to you when we return to your app.
+                //
+                // In this sample, we include an app-specific
+                // "record_id" parameter set to the value 123. You may
+                // call extra parameters anything you like.
+                HashMap<String,String> extraParams = new HashMap<String,String>();
+                extraParams.put( "record_id", "123" );
+                chargeRequest.setExtraParams( extraParams );
 
                 // Submitting the request will launch Credit Card
                 // Terminal from the passed in Activity
