@@ -32,8 +32,7 @@
 package com.innerfence.chargedemo;
 
 import android.content.Intent;
-import java.util.HashMap;
-import java.util.Map;
+import android.os.Bundle;
 
 public class ChargeResponse
 {
@@ -45,12 +44,12 @@ public class ChargeResponse
         Error
     }
 
-    protected String             _amount;
-    protected String             _cardType;
-    protected String             _currency;
-    protected Map<String,String> _extraParams;
-    protected String             _redactedCardNumber;
-    protected Code               _responseCode;
+    protected String _amount;
+    protected String _cardType;
+    protected String _currency;
+    protected Bundle _extraParams;
+    protected String _redactedCardNumber;
+    protected Code   _responseCode;
 
     public ChargeResponse( Intent data )
     {
@@ -83,9 +82,9 @@ public class ChargeResponse
         return _currency;
     }
 
-    // extraParams - This map should be the same as the dictionary you
-    // passed in when creating the ChargeRequest. If there are no
-    // extra parameters, this property will be an empty dictionary.
+    // extraParams - This should be the same as the bundle you passed
+    // in when creating the ChargeRequest. If there are no extra
+    // parameters, this property will be an null.
     //
     // WARNING - The extra params is an attack vector to your Android
     // app, just like if it were a web app; you must be wary of SQL
@@ -93,7 +92,7 @@ public class ChargeResponse
     // need to validate any parameters from the extraParams fields
     // that you will be using. For example, if you expect a numeric
     // value, you should ensure the field is comprised of digits.
-    public Map<String,String> getExtraParams()
+    public Bundle getExtraParams()
     {
         return _extraParams;
     }

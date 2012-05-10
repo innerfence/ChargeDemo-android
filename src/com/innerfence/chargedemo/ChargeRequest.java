@@ -33,27 +33,27 @@ package com.innerfence.chargedemo;
 
 import android.app.Activity;
 import android.content.Intent;
-import java.util.Map;
+import android.os.Bundle;
 
 public class ChargeRequest
 {
     final static int CCTERMINAL_REQUEST_CODE = 0x12345678;
 
-    protected String             _address;
-    protected String             _amount;
-    protected String             _city;
-    protected String             _company;
-    protected String             _country;
-    protected String             _currency;
-    protected String             _description;
-    protected String             _email;
-    protected Map<String,String> _extraParams;
-    protected String             _firstName;
-    protected String             _invoiceNumber;
-    protected String             _lastName;
-    protected String             _phone;
-    protected String             _state;
-    protected String             _zip;
+    protected String _address;
+    protected String _amount;
+    protected String _city;
+    protected String _company;
+    protected String _country;
+    protected String _currency;
+    protected String _description;
+    protected String _email;
+    protected Bundle _extraParams;
+    protected String _firstName;
+    protected String _invoiceNumber;
+    protected String _lastName;
+    protected String _phone;
+    protected String _state;
+    protected String _zip;
 
     public ChargeRequest()
     {
@@ -139,12 +139,12 @@ public class ChargeRequest
         _email = value;
     }
 
-    public Map<String,String> getExtraParams()
+    public Bundle getExtraParams()
     {
         return _extraParams;
     }
 
-    public void setExtraParams( Map<String,String> value )
+    public void setExtraParams( Bundle value )
     {
         _extraParams = value;
     }
