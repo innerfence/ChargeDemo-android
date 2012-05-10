@@ -230,7 +230,8 @@ public class ChargeRequest
 
         bundle.putBoolean( "return_to_calling_app", true );
 
-        Intent intent = callingActivity.getPackageManager().getLaunchIntentForPackage("com.innerfence.ccterminal");
+        Intent intent = new Intent();
+        intent.setClassName("com.innerfence.ccterminal", "com.innerfence.ccterminal.TerminalActivity");
         intent.putExtras( bundle );
 
         callingActivity.startActivityForResult( intent, CCTERMINAL_REQUEST_CODE );
