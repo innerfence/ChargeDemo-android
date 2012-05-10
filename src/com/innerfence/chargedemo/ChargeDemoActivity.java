@@ -1,3 +1,15 @@
+//
+// ChargeDemoActivity.java
+// Sample Code
+//
+// An example activity for a simple sort of application which might
+// make use of ChargeRequest and ChargeResponse for processing credit
+// card charges using Inner Fence's Credit Card Terminal for Android.
+//
+// You may license this source code under the MIT License. See COPYING.
+//
+// Copyright (c) 2009 Inner Fence, LLC
+//
 package com.innerfence.chargedemo;
 
 import android.app.Activity;

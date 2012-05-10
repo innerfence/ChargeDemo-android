@@ -1,3 +1,6 @@
+//
+// ChargeDemoApplication.java
+//
 package com.innerfence.chargedemo;
 
 import android.app.Application;
