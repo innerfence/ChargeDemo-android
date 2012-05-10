@@ -12,7 +12,7 @@
 //
 package com.innerfence.chargedemo;
 
-import android.app.Activity;
+import android.app.*;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -101,6 +101,51 @@ public class ChargeDemoActivity extends Activity
         if( requestCode == ChargeRequest.CCTERMINAL_REQUEST_CODE )
         {
             ChargeResponse chargeResponse = new ChargeResponse( data );
+
+            String title;
+            String message;
+            String recordId = null;
+
+            Bundle extraParams = chargeResponse.getExtraParams();
+            if( null != extraParams )
+            {
+                recordId = chargeResponse.getExtraParams().getString("record_id");
+            }
+
+            // You may want to perform different actions based on the
+            // response code. This example shows an alert with the
+            // response data when the charge is approved.
+            if ( chargeResponse.getResponseCode() == ChargeResponse.Code.APPROVED )
+            {
+                title = "Charged!";
+                message = String.format(
+                    "Record: %s\n" +
+                    "Amount: %s %s\n" +
+                    "Card Type: %s\n" +
+                    "Redacted Number: %s",
+                    recordId,
+                    chargeResponse.getAmount(),
+                    chargeResponse.getCurrency(),
+                    chargeResponse.getCardType(),
+                    chargeResponse.getRedactedCardNumber() );
+            }
+            else // other response code values are documented in ChargeResponse.h
+            {
+                title = "Not Charged!";
+                message = String.format("Record: %s", recordId);
+            }
+
+            // Generally you would do something app-specific here,
+            // like load the record specified by recordId, record the
+            // success or failure, etc. Since this sample doesn't
+            // actually do much, we'll just pop an alert.
+            Dialog d = new AlertDialog.Builder( this )
+                .setTitle( title )
+                .setMessage( message )
+                .setNeutralButton( android.R.string.ok, null )
+                .create();
+
+            d.show();
         }
     }
 }
