@@ -56,6 +56,24 @@ public class ChargeDemoActivity extends Activity
                 extraParams.put( "record_id", "123" );
                 chargeRequest.setExtraParams( extraParams );
 
+                // Finally, we can supply customer and transaction
+                // data so that it will be pre-filled for submission
+                // with the charge.
+                chargeRequest.setAddress("123 Test St");
+                chargeRequest.setAmount("50.00");
+                chargeRequest.setCurrency("USD");
+                chargeRequest.setCity("Nowhereville");
+                chargeRequest.setCompany("Company Inc");
+                chargeRequest.setCountry("US");
+                chargeRequest.setDescription("Test transaction");
+                chargeRequest.setEmail("john@example.com");
+                chargeRequest.setFirstName("John");
+                chargeRequest.setInvoiceNumber("321");
+                chargeRequest.setLastName("Doe");
+                chargeRequest.setPhone("555-1212");
+                chargeRequest.setState("HI");
+                chargeRequest.setZip("98021");
+
                 // Submitting the request will launch Credit Card
                 // Terminal from the passed in Activity
                 chargeRequest.submit( ChargeDemoActivity.this );
