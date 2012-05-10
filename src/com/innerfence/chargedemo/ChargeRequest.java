@@ -228,6 +228,8 @@ public class ChargeRequest
         bundle.putString( "state",          _state );
         bundle.putString( "zip",            _zip );
 
+        bundle.putBoolean( "return_to_calling_app", true );
+
         Intent intent = callingActivity.getPackageManager().getLaunchIntentForPackage("com.innerfence.ccterminal");
         intent.putExtras( bundle );
 
