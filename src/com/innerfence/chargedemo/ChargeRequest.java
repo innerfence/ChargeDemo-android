@@ -211,7 +211,26 @@ public class ChargeRequest
 
     public void submit( Activity callingActivity )
     {
+        Bundle bundle = new Bundle();
+        bundle.putString( "address",        _address );
+        bundle.putString( "amount",         _amount );
+        bundle.putString( "city",           _city );
+        bundle.putString( "company",        _company );
+        bundle.putString( "country",        _country );
+        bundle.putString( "currency",       _currency );
+        bundle.putString( "description",    _description );
+        bundle.putString( "email",          _email );
+        bundle.putBundle( "extra_params",   _extraParams );
+        bundle.putString( "first_name",     _firstName );
+        bundle.putString( "invoice_number", _invoiceNumber );
+        bundle.putString( "last_name",      _lastName );
+        bundle.putString( "phone",          _phone );
+        bundle.putString( "state",          _state );
+        bundle.putString( "zip",            _zip );
+
         Intent intent = callingActivity.getPackageManager().getLaunchIntentForPackage("com.innerfence.ccterminal");
+        intent.putExtras( bundle );
+
         callingActivity.startActivityForResult( intent, CCTERMINAL_REQUEST_CODE );
     }
 }
