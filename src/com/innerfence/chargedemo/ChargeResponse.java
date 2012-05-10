@@ -38,10 +38,10 @@ public class ChargeResponse
 {
     public enum Code
     {
-        Approved,
-        Cancelled,
-        Declined,
-        Error
+        APPROVED,
+        CANCELLED,
+        DECLINED,
+        ERROR,
     }
 
     protected String _amount;
@@ -49,11 +49,37 @@ public class ChargeResponse
     protected String _currency;
     protected Bundle _extraParams;
     protected String _redactedCardNumber;
-    protected Code   _responseCode;
+    protected Code   _responseCode = Code.ERROR;
 
     public ChargeResponse( Intent data )
     {
-        // TODO: parse data out
+        if( null != data &&
+            null != data.getExtras() )
+        {
+            Bundle bundle = data.getExtras();
+            _amount             = bundle.getString("amount");
+            _cardType           = bundle.getString("card_type");
+            _currency           = bundle.getString("currency");
+            _extraParams        = bundle.getBundle("extra_params");
+            _redactedCardNumber = bundle.getString("redacted_card_number");
+
+            String responseCodeString = bundle.getString("response_code");
+            if( null != responseCodeString )
+            {
+                if( responseCodeString.equals("approved") )
+                {
+                    _responseCode = Code.APPROVED;
+                }
+                else if( responseCodeString.equals("cancelled") )
+                {
+                    _responseCode = Code.CANCELLED;
+                }
+                else if( responseCodeString.equals("declined") )
+                {
+                    _responseCode = Code.DECLINED;
+                }
+            }
+        }
     }
 
     // amount - The amount that was charged to the card. This is a string,
