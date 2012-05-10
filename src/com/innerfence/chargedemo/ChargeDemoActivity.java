@@ -30,4 +30,14 @@ public class ChargeDemoActivity extends Activity
         Button chargeButton = (Button)findViewById( R.id.charge_button );
         chargeButton.setOnClickListener( _chargeButtonClickListener );
     }
+
+    @Override
+    public void onActivityResult( int requestCode, int resultCode, Intent data )
+    {
+        super.onActivityResult( requestCode, resultCode, data );
+
+        if( requestCode == CCTERMINAL_RESPONSE_CODE )
+        {
+        }
+    }
 }
