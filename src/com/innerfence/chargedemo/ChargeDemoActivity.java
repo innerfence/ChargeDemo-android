@@ -20,16 +20,27 @@ import android.widget.Button;
 
 public class ChargeDemoActivity extends Activity
 {
-    final int CCTERMINAL_RESPONSE_CODE = 1;
-
+    // Here we set up an ChargeRequest object and submit it in order
+    // to invoke Credit Card Terminal.
     protected final View.OnClickListener _chargeButtonClickListener =
         new View.OnClickListener()
         {
             @Override
             public final void onClick( View v )
             {
-                Intent intent = getPackageManager().getLaunchIntentForPackage("com.innerfence.ccterminal");
-                startActivityForResult( intent, CCTERMINAL_RESPONSE_CODE );
+                // Create the ChargeRequest using the default
+                // constructor.
+                //
+                // If we wanted to, we could pass in a object that
+                // implements IChargeResponseListener as the first
+                // parameter. When no listener is provided, a simple
+                // UI alert is displayed in the case that the charge
+                // request cannot be invoked.
+                ChargeRequest chargeRequest = new ChargeRequest();
+
+                // Submitting the request will launch Credit Card
+                // Terminal from the passed in Activity
+                chargeRequest.submit( ChargeDemoActivity.this );
             }
         };
 
@@ -48,7 +59,7 @@ public class ChargeDemoActivity extends Activity
     {
         super.onActivityResult( requestCode, resultCode, data );
 
-        if( requestCode == CCTERMINAL_RESPONSE_CODE )
+        if( requestCode == ChargeRequest.CCTERMINAL_REQUEST_CODE )
         {
         }
     }

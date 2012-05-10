@@ -31,6 +31,9 @@
 //
 package com.innerfence.chargedemo;
 
+import android.app.Activity;
+import android.content.Intent;
+
 public class ChargeRequest
 {
     protected String _address;
@@ -47,6 +50,8 @@ public class ChargeRequest
     protected String _phone;
     protected String _state;
     protected String _zip;
+    final static int CCTERMINAL_REQUEST_CODE = 0x12345678;
+
 
     public ChargeRequest()
     {
@@ -190,6 +195,12 @@ public class ChargeRequest
     public void setZip( String value )
     {
         _zip = value;
+    }
+
+    public void submit( Activity callingActivity )
+    {
+        Intent intent = callingActivity.getPackageManager().getLaunchIntentForPackage("com.innerfence.ccterminal");
+        callingActivity.startActivityForResult( intent, CCTERMINAL_REQUEST_CODE );
     }
 }
 
