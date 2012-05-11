@@ -40,7 +40,6 @@ public class ChargeResponse
     {
         APPROVED,
         CANCELLED,
-        DECLINED,
         ERROR,
     }
 
@@ -73,10 +72,6 @@ public class ChargeResponse
                 else if( responseCodeString.equals("cancelled") )
                 {
                     _responseCode = Code.CANCELLED;
-                }
-                else if( responseCodeString.equals("declined") )
-                {
-                    _responseCode = Code.DECLINED;
                 }
             }
         }
