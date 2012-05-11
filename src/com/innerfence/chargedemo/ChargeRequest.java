@@ -226,7 +226,10 @@ public class ChargeRequest
         bundle.putString( "state",          _state );
         bundle.putString( "zip",            _zip );
 
-        bundle.putBoolean( "return_to_calling_app", true );
+        // calling_app param is required to let Credit Card Terminal
+        // that it was launched from a calling app.
+        String callingApp = callingActivity.getPackageName();
+        bundle.putString( "calling_app", callingApp );
 
         Intent intent = new Intent();
         intent.setClassName("com.innerfence.ccterminal", "com.innerfence.ccterminal.TerminalActivity");
