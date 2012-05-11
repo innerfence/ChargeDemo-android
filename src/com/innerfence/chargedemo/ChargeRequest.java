@@ -39,6 +39,22 @@ import android.os.Bundle;
 
 public class ChargeRequest
 {
+    public static boolean IsAppInstalled( Context context )
+    {
+        try
+        {
+            ApplicationInfo appInfo =
+                context.getPackageManager().getApplicationInfo(
+                    "com.innerfence.ccterminal", PackageManager.GET_META_DATA );
+
+            return true;
+        }
+        catch( PackageManager.NameNotFoundException ex )
+        {
+            return false;
+        }
+    }
+
     protected String _address;
     protected String _amount;
     protected String _city;
@@ -251,16 +267,11 @@ public class ChargeRequest
         intent.setClassName("com.innerfence.ccterminal", "com.innerfence.ccterminal.TerminalActivity");
         intent.putExtras( bundle );
 
-        try
+        if( ChargeRequest.IsAppInstalled(callingActivity) )
         {
-            // Make sure Credit Card Terminal is installed
-            ApplicationInfo appInfo =
-                callingActivity.getPackageManager().getApplicationInfo(
-                    "com.innerfence.ccterminal", PackageManager.GET_META_DATA );
-
             callingActivity.startActivityForResult( intent, R.id.ccterminal_request_code );
         }
-        catch( PackageManager.NameNotFoundException ex )
+        else
         {
             AlertDialog d = new AlertDialog.Builder( callingActivity )
                 .setTitle( "MISSING: Credit Card Terminal" )

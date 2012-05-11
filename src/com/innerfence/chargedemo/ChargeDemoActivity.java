@@ -30,12 +30,6 @@ public class ChargeDemoActivity extends Activity
             {
                 // Create the ChargeRequest using the default
                 // constructor.
-                //
-                // If we wanted to, we could pass in a object that
-                // implements IChargeResponseListener as the first
-                // parameter. When no listener is provided, a simple
-                // UI alert is displayed in the case that the charge
-                // request cannot be invoked.
                 ChargeRequest chargeRequest = new ChargeRequest();
 
                 // 2-way Integration
@@ -75,6 +69,13 @@ public class ChargeDemoActivity extends Activity
 
                 // Submitting the request will launch Credit Card
                 // Terminal from the passed in Activity
+                //
+                // If you want to handle the case where Credit Card
+                // Terminal is not installed, you can always check
+                // anytime by calling ChargeRequest.IsAppInstalled().
+                // Otherwise, we'll show an alert telling the user
+                // that Credit Card Terminal is not installed and
+                // provide a link to install it.
                 chargeRequest.submit( ChargeDemoActivity.this );
             }
         };
