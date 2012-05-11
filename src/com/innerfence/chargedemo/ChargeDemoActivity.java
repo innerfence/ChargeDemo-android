@@ -20,6 +20,9 @@ import android.widget.Button;
 
 public class ChargeDemoActivity extends Activity
 {
+    String responseTitle;
+    String responseMessage;
+
     // Here we set up an ChargeRequest object and submit it in order
     // to invoke Credit Card Terminal.
     protected final View.OnClickListener _chargeButtonClickListener =
@@ -102,8 +105,6 @@ public class ChargeDemoActivity extends Activity
         {
             ChargeResponse chargeResponse = new ChargeResponse( data );
 
-            String title;
-            String message;
             String recordId = null;
 
             Bundle extraParams = chargeResponse.getExtraParams();
@@ -117,8 +118,8 @@ public class ChargeDemoActivity extends Activity
             // response data when the charge is approved.
             if ( chargeResponse.getResponseCode() == ChargeResponse.Code.APPROVED )
             {
-                title = "Charged!";
-                message = String.format(
+                responseTitle = "Charged!";
+                responseMessage = String.format(
                     "Record: %s\n" +
                     "Amount: %s %s\n" +
                     "Card Type: %s\n" +
@@ -127,25 +128,46 @@ public class ChargeDemoActivity extends Activity
                     chargeResponse.getAmount(),
                     chargeResponse.getCurrency(),
                     chargeResponse.getCardType(),
-                    chargeResponse.getRedactedCardNumber() );
+                    chargeResponse.getRedactedCardNumber()
+                );
             }
             else // other response code values are documented in ChargeResponse.h
             {
-                title = "Not Charged!";
-                message = String.format("Record: %s", recordId);
+                responseTitle = "Not Charged!";
+                responseMessage = String.format(
+                    "Record: %s\n" +
+                    "Code: %s",
+                    recordId,
+                    chargeResponse.getResponseCode()
+                );
             }
 
             // Generally you would do something app-specific here,
             // like load the record specified by recordId, record the
             // success or failure, etc. Since this sample doesn't
             // actually do much, we'll just pop an alert.
-            Dialog d = new AlertDialog.Builder( this )
-                .setTitle( title )
-                .setMessage( message )
+            showDialog( R.id.charge_response_dialog );
+        }
+    }
+
+    @Override
+    protected Dialog onCreateDialog( int id )
+    {
+        Dialog d = null;
+
+        switch( id )
+        {
+
+        case R.id.charge_response_dialog: {
+            d = new AlertDialog.Builder( this )
+                .setTitle( responseTitle )
+                .setMessage( responseMessage )
                 .setNeutralButton( android.R.string.ok, null )
                 .create();
+        } break;
 
-            d.show();
         }
+
+        return null != d ? d : super.onCreateDialog( id );
     }
 }
