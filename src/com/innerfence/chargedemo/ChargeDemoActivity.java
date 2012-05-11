@@ -12,17 +12,14 @@
 //
 package com.innerfence.chargedemo;
 
-import android.app.*;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.*;
 
 public class ChargeDemoActivity extends Activity
 {
-    String responseTitle;
-    String responseMessage;
-
     // Here we set up an ChargeRequest object and submit it in order
     // to invoke Credit Card Terminal.
     protected final View.OnClickListener _chargeButtonClickListener =
@@ -105,6 +102,7 @@ public class ChargeDemoActivity extends Activity
         {
             ChargeResponse chargeResponse = new ChargeResponse( data );
 
+            String message;
             String recordId = null;
 
             Bundle extraParams = chargeResponse.getExtraParams();
@@ -118,8 +116,8 @@ public class ChargeDemoActivity extends Activity
             // response data when the charge is approved.
             if ( chargeResponse.getResponseCode() == ChargeResponse.Code.APPROVED )
             {
-                responseTitle = "Charged!";
-                responseMessage = String.format(
+                message = String.format(
+                    "Charged!\n\n" +
                     "Record: %s\n" +
                     "Amount: %s %s\n" +
                     "Card Type: %s\n" +
@@ -133,8 +131,8 @@ public class ChargeDemoActivity extends Activity
             }
             else // other response code values are documented in ChargeResponse.h
             {
-                responseTitle = "Not Charged!";
-                responseMessage = String.format(
+                message = String.format(
+                    "Not Charged!\n\n" +
                     "Record: %s\n" +
                     "Code: %s",
                     recordId,
@@ -146,28 +144,8 @@ public class ChargeDemoActivity extends Activity
             // like load the record specified by recordId, record the
             // success or failure, etc. Since this sample doesn't
             // actually do much, we'll just pop an alert.
-            showDialog( R.id.charge_response_dialog );
+            Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
+            toast.show();
         }
-    }
-
-    @Override
-    protected Dialog onCreateDialog( int id )
-    {
-        Dialog d = null;
-
-        switch( id )
-        {
-
-        case R.id.charge_response_dialog: {
-            d = new AlertDialog.Builder( this )
-                .setTitle( responseTitle )
-                .setMessage( responseMessage )
-                .setNeutralButton( android.R.string.ok, null )
-                .create();
-        } break;
-
-        }
-
-        return null != d ? d : super.onCreateDialog( id );
     }
 }
