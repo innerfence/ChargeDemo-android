@@ -135,9 +135,11 @@ public class ChargeDemoActivity extends Activity
                 message = String.format(
                     "Not Charged!\n\n" +
                     "Record: %s\n" +
-                    "Code: %s",
+                    "Code: %s\n" +
+                    "Error Message: %s",
                     recordId,
-                    chargeResponse.getResponseCode()
+                    chargeResponse.getResponseCode(),
+                    chargeResponse.getErrorMessage()
                 );
             }
 

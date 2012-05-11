@@ -46,6 +46,7 @@ public class ChargeResponse
     protected String _amount;
     protected String _cardType;
     protected String _currency;
+    protected String _errorMessage;
     protected Bundle _extraParams;
     protected String _redactedCardNumber;
     protected Code   _responseCode = Code.ERROR;
@@ -59,6 +60,7 @@ public class ChargeResponse
             _amount             = bundle.getString("amount");
             _cardType           = bundle.getString("card_type");
             _currency           = bundle.getString("currency");
+            _errorMessage       = bundle.getString("error_message");
             _extraParams        = bundle.getBundle("extra_params");
             _redactedCardNumber = bundle.getString("redacted_card_number");
 
@@ -101,6 +103,13 @@ public class ChargeResponse
     public String getCurrency()
     {
         return _currency;
+    }
+
+    // errorMessage - If an error occured, more diagnostic info will
+    // be provided in parameter
+    public String getErrorMessage()
+    {
+        return _errorMessage;
     }
 
     // extraParams - This should be the same as the bundle you passed
