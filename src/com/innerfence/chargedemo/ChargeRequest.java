@@ -37,8 +37,6 @@ import android.os.Bundle;
 
 public class ChargeRequest
 {
-    final static int CCTERMINAL_REQUEST_CODE = 0x12345678;
-
     protected String _address;
     protected String _amount;
     protected String _city;
@@ -234,7 +232,7 @@ public class ChargeRequest
         intent.setClassName("com.innerfence.ccterminal", "com.innerfence.ccterminal.TerminalActivity");
         intent.putExtras( bundle );
 
-        callingActivity.startActivityForResult( intent, CCTERMINAL_REQUEST_CODE );
+        callingActivity.startActivityForResult( intent, R.id.ccterminal_request_code );
     }
 }
 
