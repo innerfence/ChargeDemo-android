@@ -31,8 +31,10 @@
 //
 package com.innerfence.chargedemo;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.app.*;
+import android.content.*;
+import android.content.pm.*;
+import android.net.Uri;
 import android.os.Bundle;
 
 public class ChargeRequest
@@ -52,6 +54,20 @@ public class ChargeRequest
     protected String _phone;
     protected String _state;
     protected String _zip;
+
+    protected final DialogInterface.OnClickListener _installCCTerminalListener =
+        new DialogInterface.OnClickListener()
+        {
+            @Override
+            public final void onClick( DialogInterface dialog, int which )
+            {
+                AlertDialog d = (AlertDialog)dialog;
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("market://details?id=com.innerfence.ccterminal"));
+                d.getContext().startActivity(intent);
+            }
+        };
 
     public ChargeRequest()
     {
@@ -235,7 +251,26 @@ public class ChargeRequest
         intent.setClassName("com.innerfence.ccterminal", "com.innerfence.ccterminal.TerminalActivity");
         intent.putExtras( bundle );
 
-        callingActivity.startActivityForResult( intent, R.id.ccterminal_request_code );
+        try
+        {
+            // Make sure Credit Card Terminal is installed
+            ApplicationInfo appInfo =
+                callingActivity.getPackageManager().getApplicationInfo(
+                    "com.innerfence.ccterminal", PackageManager.GET_META_DATA );
+
+            callingActivity.startActivityForResult( intent, R.id.ccterminal_request_code );
+        }
+        catch( PackageManager.NameNotFoundException ex )
+        {
+            AlertDialog d = new AlertDialog.Builder( callingActivity )
+                .setTitle( "MISSING: Credit Card Terminal" )
+                .setMessage( "You'll need to install Credit Card Terminal before you can use this feature. Tap Install below to begin the installation process." )
+                .setPositiveButton( "Install", _installCCTerminalListener )
+                .setNegativeButton( android.R.string.cancel, null )
+                .create();
+
+            d.show();
+        }
     }
 }
 
