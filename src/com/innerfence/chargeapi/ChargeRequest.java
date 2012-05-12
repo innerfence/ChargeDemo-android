@@ -41,6 +41,26 @@ public class ChargeRequest
 {
     public static final int CCTERMINAL_REQUEST_CODE = 0x698893c1;
 
+    public static class Keys
+    {
+        public static final String ADDRESS        = "address";
+        public static final String AMOUNT         = "amount";
+        public static final String CALLING_APP    = "callingApp";
+        public static final String CITY           = "city";
+        public static final String COMPANY        = "company";
+        public static final String COUNTRY        = "country";
+        public static final String CURRENCY       = "currency";
+        public static final String DESCRIPTION    = "description";
+        public static final String EMAIL          = "email";
+        public static final String EXTRA_PARAMS   = "extraParams";
+        public static final String FIRST_NAME     = "firstName";
+        public static final String INVOICE_NUMBER = "invoiceNumber";
+        public static final String LAST_NAME      = "lastName";
+        public static final String PHONE          = "phone";
+        public static final String STATE          = "state";
+        public static final String ZIP            = "zip";
+    }
+
     public static boolean IsAppInstalled( Context context )
     {
         try
@@ -244,26 +264,26 @@ public class ChargeRequest
     public void submit( Activity callingActivity )
     {
         Bundle bundle = new Bundle();
-        bundle.putString( "address",        _address );
-        bundle.putString( "amount",         _amount );
-        bundle.putString( "city",           _city );
-        bundle.putString( "company",        _company );
-        bundle.putString( "country",        _country );
-        bundle.putString( "currency",       _currency );
-        bundle.putString( "description",    _description );
-        bundle.putString( "email",          _email );
-        bundle.putBundle( "extra_params",   _extraParams );
-        bundle.putString( "first_name",     _firstName );
-        bundle.putString( "invoice_number", _invoiceNumber );
-        bundle.putString( "last_name",      _lastName );
-        bundle.putString( "phone",          _phone );
-        bundle.putString( "state",          _state );
-        bundle.putString( "zip",            _zip );
+        bundle.putString( Keys.ADDRESS,        _address );
+        bundle.putString( Keys.AMOUNT,         _amount );
+        bundle.putString( Keys.CITY,           _city );
+        bundle.putString( Keys.COMPANY,        _company );
+        bundle.putString( Keys.COUNTRY,        _country );
+        bundle.putString( Keys.CURRENCY,       _currency );
+        bundle.putString( Keys.DESCRIPTION,    _description );
+        bundle.putString( Keys.EMAIL,          _email );
+        bundle.putBundle( Keys.EXTRA_PARAMS,   _extraParams );
+        bundle.putString( Keys.FIRST_NAME,     _firstName );
+        bundle.putString( Keys.INVOICE_NUMBER, _invoiceNumber );
+        bundle.putString( Keys.LAST_NAME,      _lastName );
+        bundle.putString( Keys.PHONE,          _phone );
+        bundle.putString( Keys.STATE,          _state );
+        bundle.putString( Keys.ZIP,            _zip );
 
         // calling_app param is required to let Credit Card Terminal
         // that it was launched from a calling app.
         String callingApp = callingActivity.getPackageName();
-        bundle.putString( "calling_app", callingApp );
+        bundle.putString( Keys.CALLING_APP, callingApp );
 
         Intent intent = new Intent();
         intent.setClassName("com.innerfence.ccterminal", "com.innerfence.ccterminal.TerminalActivity");

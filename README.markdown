@@ -17,6 +17,7 @@ The Charge request is simply a Bundle of parameters that is included
 in the Intent that starts Credit Card Terminal
 
 * `amount` - amount of the transaction (e.g. `10.99`, `1.00`, `0.90`)
+* `callingApp` - name of app that's calling us (required)
 * `currency` - currecy code of amount (e.g. `USD`)
 * `email` - customer's email address for receipt
 * `firstName` - billing first name
