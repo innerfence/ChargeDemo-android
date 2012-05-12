@@ -1,5 +1,0 @@
-# This project uses RECURSIVE git submodules.
-# Make sure you're running at least git v1.6.5
-# To update your submodules, run
-
-git submodule update --init --recursive
