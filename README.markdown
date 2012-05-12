@@ -59,8 +59,8 @@ This file.
 A copy of the MIT License, under which you may reuse any of the source
 code in this sample.
 
-* src/com/innerfence/chargedemo/ChargeResponse.java
-* src/com/innerfence/chargedemo/ChargeRequest.java
+* src/com/innerfence/chargeapi/ChargeResponse.java
+* src/com/innerfence/chargeapi/ChargeRequest.java
 
 The ChargeRequest and ChargeResponse classes. Copy these files into
 your own Android project. There are no external dependencies other

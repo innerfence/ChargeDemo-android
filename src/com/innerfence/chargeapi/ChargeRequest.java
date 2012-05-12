@@ -29,7 +29,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
 //
-package com.innerfence.chargedemo;
+package com.innerfence.chargeapi;
 
 import android.app.*;
 import android.content.*;

@@ -12,6 +12,9 @@
 //
 package com.innerfence.chargedemo;
 
+import com.innerfence.chargeapi.ChargeRequest;
+import com.innerfence.chargeapi.ChargeResponse;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
