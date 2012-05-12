@@ -20,7 +20,7 @@ in the Intent that starts Credit Card Terminal
 * `currency` - currecy code of amount (e.g. `USD`)
 * `email` - customer's email address for receipt
 * `firstName` - billing first name
-* `lastName` - billing lastName
+* `lastName` - billing last name
 * `company` - billing company name
 * `address` - billing street address
 * `city` - billing city
