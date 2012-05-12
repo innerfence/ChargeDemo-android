@@ -47,6 +47,7 @@ Intent.
 * `currency` - currency of amount (e.g. `USD`)
 * `redactedCardNumber` - redacted card number (e.g. `XXXXXXXXXXXX1111`)
 * `cardType` - card type: `Visa`, `MasterCard`, `Amex`, `Discover`, `Maestro`, `Solo`, or `Unknown`
+* `errorMessage` - diagnostic message if `responseType` was `error`
 
 FILE MANIFEST
 =============

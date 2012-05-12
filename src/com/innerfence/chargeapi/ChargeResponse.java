@@ -43,13 +43,32 @@ public class ChargeResponse
         ERROR,
     }
 
+    public static class Keys
+    {
+        public static final String AMOUNT               = "amount";
+        public static final String CARD_TYPE            = "cardType";
+        public static final String CURRENCY             = "currency";
+        public static final String ERROR_MESSAGE        = "errorMessage";
+        public static final String EXTRA_PARAMS         = "extraParams";
+        public static final String REDACTED_CARD_NUMBER = "redactedCardNumber";
+        public static final String RESPONSE_TYPE        = "responseType";
+    }
+
+    public static class Type
+    {
+        public static final String APPROVED  = "approved";
+        public static final String CANCELLED = "cancelled";
+        public static final String ERROR     = "error";
+    }
+
     protected String _amount;
     protected String _cardType;
     protected String _currency;
     protected String _errorMessage;
     protected Bundle _extraParams;
     protected String _redactedCardNumber;
-    protected Code   _responseCode = Code.ERROR;
+    protected Code   _responseCode;
+    protected String _responseType;
 
     public ChargeResponse( Intent data )
     {
@@ -57,24 +76,25 @@ public class ChargeResponse
             null != data.getExtras() )
         {
             Bundle bundle = data.getExtras();
-            _amount             = bundle.getString("amount");
-            _cardType           = bundle.getString("card_type");
-            _currency           = bundle.getString("currency");
-            _errorMessage       = bundle.getString("error_message");
-            _extraParams        = bundle.getBundle("extra_params");
-            _redactedCardNumber = bundle.getString("redacted_card_number");
+            _amount             = bundle.getString(Keys.AMOUNT);
+            _cardType           = bundle.getString(Keys.CARD_TYPE);
+            _currency           = bundle.getString(Keys.CURRENCY);
+            _errorMessage       = bundle.getString(Keys.ERROR_MESSAGE);
+            _extraParams        = bundle.getBundle(Keys.EXTRA_PARAMS);
+            _redactedCardNumber = bundle.getString(Keys.REDACTED_CARD_NUMBER);
+            _responseType       = bundle.getString(Keys.RESPONSE_TYPE);
 
-            String responseCodeString = bundle.getString("response_code");
-            if( null != responseCodeString )
+            if( Type.APPROVED.equals(_responseType) )
             {
-                if( responseCodeString.equals("approved") )
-                {
-                    _responseCode = Code.APPROVED;
-                }
-                else if( responseCodeString.equals("cancelled") )
-                {
-                    _responseCode = Code.CANCELLED;
-                }
+                _responseCode = Code.APPROVED;
+            }
+            else if( Type.CANCELLED.equals(_responseType) )
+            {
+                _responseCode = Code.CANCELLED;
+            }
+            else
+            {
+                _responseCode = Code.ERROR;
             }
         }
     }
@@ -139,5 +159,11 @@ public class ChargeResponse
     public Code getResponseCode()
     {
         return _responseCode;
+    }
+
+    // responseType - string value of responseCode
+    public String getResponseType()
+    {
+        return _responseType;
     }
 }
