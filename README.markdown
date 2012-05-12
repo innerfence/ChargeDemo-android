@@ -41,14 +41,14 @@ When the transaction is completed, cancelled, or has an error, it'll
 return to your app with a Bundle of parameters inside the result
 Intent.
 
-* `responseType` - `approved`, `cancelled`, `declined`, or `error`
-* `amount` - amount charged (e.g. `10.99`)
-* `currency` - currency of amount (e.g. `USD`)
-* `redactedCardNumber` - redacted card number (e.g. `XXXXXXXXXXXX1111`)
-* `cardType` - card type: `Visa`, `MasterCard`, `Amex`, `Discover`, `Maestro`, `Solo`, or `Unknown`
-* `errorMessage` - diagnostic message if `responseType` was `error`
+* `ifcc_responseType` - `approved`, `cancelled`, `declined`, or `error`
+* `ifcc_amount` - amount charged (e.g. `10.99`)
+* `ifcc_currency` - currency of amount (e.g. `USD`)
+* `ifcc_redactedCardNumber` - redacted card number (e.g. `XXXXXXXXXXXX1111`)
+* `ifcc_cardType` - card type: `Visa`, `MasterCard`, `Amex`, `Discover`, `Maestro`, `Solo`, or `Unknown`
+* `ifcc_errorMessage` - diagnostic message if `responseType` was `error`
 
-* `extraParams` - your app-specific parameters Bundle provided in the
+* `ifcc_extraParams` - your app-specific parameters Bundle provided in the
   original request
 
 FILE MANIFEST

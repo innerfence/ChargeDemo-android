@@ -46,13 +46,13 @@ public class ChargeResponse
 
     public static class Keys
     {
-        public static final String AMOUNT               = "amount";
-        public static final String CARD_TYPE            = "cardType";
-        public static final String CURRENCY             = "currency";
-        public static final String ERROR_MESSAGE        = "errorMessage";
-        public static final String EXTRA_PARAMS         = "extraParams";
-        public static final String REDACTED_CARD_NUMBER = "redactedCardNumber";
-        public static final String RESPONSE_TYPE        = "responseType";
+        public static final String AMOUNT               = "ifcc_amount";
+        public static final String CARD_TYPE            = "ifcc_cardType";
+        public static final String CURRENCY             = "ifcc_currency";
+        public static final String ERROR_MESSAGE        = "ifcc_errorMessage";
+        public static final String EXTRA_PARAMS         = "ifcc_extraParams";
+        public static final String REDACTED_CARD_NUMBER = "ifcc_redactedCardNumber";
+        public static final String RESPONSE_TYPE        = "ifcc_responseType";
     }
 
     public static class Type
