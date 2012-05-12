@@ -39,6 +39,8 @@ import android.os.Bundle;
 
 public class ChargeRequest
 {
+    public static final int CCTERMINAL_REQUEST_CODE = 0x698893c1;
+
     public static boolean IsAppInstalled( Context context )
     {
         try
@@ -269,7 +271,7 @@ public class ChargeRequest
 
         if( ChargeRequest.IsAppInstalled(callingActivity) )
         {
-            callingActivity.startActivityForResult( intent, R.id.ccterminal_request_code );
+            callingActivity.startActivityForResult( intent, CCTERMINAL_REQUEST_CODE );
         }
         else
         {

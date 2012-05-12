@@ -102,7 +102,7 @@ public class ChargeDemoActivity extends Activity
         // onActivityResult() method will be called. You can validate
         // that it's returning from our app by confirming the request
         // code matches ours.
-        if( requestCode == R.id.ccterminal_request_code )
+        if( requestCode == ChargeRequest.CCTERMINAL_REQUEST_CODE )
         {
             ChargeResponse chargeResponse = new ChargeResponse( data );
 

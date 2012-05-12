@@ -66,13 +66,6 @@ The ChargeRequest and ChargeResponse classes. Copy these files into
 your own Android project. There are no external dependencies other
 than the android libraries.
 
-* res/values/ids.xml
-
-This is used to generate a unique request code for launching Credit
-Card Terminal, so when it finishes, you’ll it’s returning from Credit
-Card Terminal. If you already have an existing ids.xml, feel free to
-merge it into yours or rename the file.
-
 * src/com/innerfence/chargedemo/ChargeDemoActivity.java
 * res/layout/main.xml
 
