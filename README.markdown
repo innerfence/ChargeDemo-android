@@ -76,8 +76,10 @@ than the android libraries.
 A very simple activity that provides a single Charge button. When the
 button is tapped, an ChargeRequest object is created and submitted.
 
-* src/com/innerfence/chargedemo/ChargeDemoApplication.java
 * AndroidManifest.xml
+* src/com/innerfence/chargedemo/ChargeDemoApplication.java
+* res/drawable/icon.png
+* res/values/string.xml
 
 These are files needed so that it can be compiled into an Android app.
 
