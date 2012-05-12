@@ -42,7 +42,7 @@ When the transaction is completed, cancelled, or has an error, it'll
 return to your app with a Bundle of parameters inside the result
 Intent.
 
-* `responseType` - `approved`, `cancelled`, or `error`
+* `responseType` - `approved`, `cancelled`, `declined`, or `error`
 * `amount` - amount charged (e.g. `10.99`)
 * `currency` - currency of amount (e.g. `USD`)
 * `redactedCardNumber` - redacted card number (e.g. `XXXXXXXXXXXX1111`)

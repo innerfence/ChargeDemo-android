@@ -40,6 +40,7 @@ public class ChargeResponse
     {
         APPROVED,
         CANCELLED,
+        DECLINED,
         ERROR,
     }
 
@@ -58,6 +59,7 @@ public class ChargeResponse
     {
         public static final String APPROVED  = "approved";
         public static final String CANCELLED = "cancelled";
+        public static final String DECLINED  = "declined";
         public static final String ERROR     = "error";
     }
 
@@ -91,6 +93,10 @@ public class ChargeResponse
             else if( Type.CANCELLED.equals(_responseType) )
             {
                 _responseCode = Code.CANCELLED;
+            }
+            else if( Type.DECLINED.equals(_responseType) )
+            {
+                _responseCode = Code.DECLINED;
             }
             else
             {
