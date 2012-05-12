@@ -32,8 +32,7 @@ in the Intent that starts Credit Card Terminal
 * `invoiceNumber` - merchant-assigned invoice number
 * `description` - description of goods or services
 
-If you want to include your own app-specific parameters, please
-include your own Bundle inside `extraParams`
+* `extraParams` - your own app-specific parameters Bundle
 
 CHARGE RESPONSE
 =================
@@ -48,6 +47,9 @@ Intent.
 * `redactedCardNumber` - redacted card number (e.g. `XXXXXXXXXXXX1111`)
 * `cardType` - card type: `Visa`, `MasterCard`, `Amex`, `Discover`, `Maestro`, `Solo`, or `Unknown`
 * `errorMessage` - diagnostic message if `responseType` was `error`
+
+* `extraParams` - your app-specific parameters Bundle provided in the
+  original request
 
 FILE MANIFEST
 =============
