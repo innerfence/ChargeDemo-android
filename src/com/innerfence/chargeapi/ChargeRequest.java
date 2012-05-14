@@ -274,6 +274,19 @@ public class ChargeRequest
 
     public void submit( Activity callingActivity )
     {
+        if( null == _returnAppName )
+        {
+            try
+            {
+                String packageName = callingActivity.getPackageName();
+                ApplicationInfo appInfo = callingActivity.getPackageManager().getApplicationInfo( packageName, PackageManager.GET_META_DATA );
+                _returnAppName = callingActivity.getPackageManager().getApplicationLabel( appInfo ).toString();
+            }
+            catch( PackageManager.NameNotFoundException ex )
+            {
+            }
+        }
+
         Bundle bundle = new Bundle();
         bundle.putString( Keys.ADDRESS,         _address );
         bundle.putString( Keys.AMOUNT,          _amount );
