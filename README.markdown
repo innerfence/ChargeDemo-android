@@ -16,7 +16,7 @@ CHARGE REQUEST
 The Charge request is simply a Bundle of parameters that is included
 in the Intent that starts Credit Card Terminal
 
-* `returnAppName` - your app's name, displayed to give the user contexto
+* `returnAppName` - your app's name, displayed to give the user context
 * `amount` - amount of the transaction (e.g. `10.99`, `1.00`, `0.90`)
 * `currency` - currecy code of amount (e.g. `USD`)
 * `email` - customer's email address for receipt
