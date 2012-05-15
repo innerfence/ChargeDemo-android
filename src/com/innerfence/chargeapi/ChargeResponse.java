@@ -74,34 +74,46 @@ public class ChargeResponse
 
     public ChargeResponse( Intent data )
     {
-        if( null != data &&
-            null != data.getExtras() )
+        if( null == data )
         {
-            Bundle bundle = data.getExtras();
-            _amount             = bundle.getString(Keys.AMOUNT);
-            _cardType           = bundle.getString(Keys.CARD_TYPE);
-            _currency           = bundle.getString(Keys.CURRENCY);
-            _errorMessage       = bundle.getString(Keys.ERROR_MESSAGE);
-            _extraParams        = bundle.getBundle(Keys.EXTRA_PARAMS);
-            _redactedCardNumber = bundle.getString(Keys.REDACTED_CARD_NUMBER);
-            _responseType       = bundle.getString(Keys.RESPONSE_TYPE);
+            throw new IllegalArgumentException("data is null");
+        }
 
-            if( Type.APPROVED.equals(_responseType) )
-            {
-                _responseCode = Code.APPROVED;
-            }
-            else if( Type.CANCELLED.equals(_responseType) )
-            {
-                _responseCode = Code.CANCELLED;
-            }
-            else if( Type.DECLINED.equals(_responseType) )
-            {
-                _responseCode = Code.DECLINED;
-            }
-            else
-            {
-                _responseCode = Code.ERROR;
-            }
+        if( null == data.getExtras() )
+        {
+            throw new IllegalArgumentException("data has no extras bundle.");
+        }
+
+        Bundle bundle = data.getExtras();
+
+        if( !bundle.containsKey(Keys.RESPONSE_TYPE) )
+        {
+            throw new IllegalArgumentException("data's extras bundle doesn't contain a response type");
+        }
+
+        _amount             = bundle.getString(Keys.AMOUNT);
+        _cardType           = bundle.getString(Keys.CARD_TYPE);
+        _currency           = bundle.getString(Keys.CURRENCY);
+        _errorMessage       = bundle.getString(Keys.ERROR_MESSAGE);
+        _extraParams        = bundle.getBundle(Keys.EXTRA_PARAMS);
+        _redactedCardNumber = bundle.getString(Keys.REDACTED_CARD_NUMBER);
+        _responseType       = bundle.getString(Keys.RESPONSE_TYPE);
+
+        if( Type.APPROVED.equals(_responseType) )
+        {
+            _responseCode = Code.APPROVED;
+        }
+        else if( Type.CANCELLED.equals(_responseType) )
+        {
+            _responseCode = Code.CANCELLED;
+        }
+        else if( Type.DECLINED.equals(_responseType) )
+        {
+            _responseCode = Code.DECLINED;
+        }
+        else
+        {
+            _responseCode = Code.ERROR;
         }
     }
 
