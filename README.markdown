@@ -57,7 +57,9 @@ SETTING UP PROJECT
 After cloning this git repository, you'll need to run the following
 command inside the root directory:
 
-> android update project --name ChargeDemo --target "android-8" --path .
+```bash
+$ android update project --name ChargeDemo --target "android-8" --path .
+```
 
 This will setup the project and generate any additional needed files
 for you to compile and install the demo app.
@@ -69,7 +71,9 @@ To compile and install, ensure your Android device is attached or the
 Android emulator is running. Then run the following command inside the
 root directory:
 
-> ant install
+```bash
+$ ant install
+```
 
 FILE MANIFEST
 =============
