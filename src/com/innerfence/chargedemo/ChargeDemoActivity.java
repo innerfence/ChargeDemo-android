@@ -17,6 +17,7 @@ import com.innerfence.chargeapi.ChargeResponse;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -87,6 +88,7 @@ public class ChargeDemoActivity extends Activity
     public void onCreate( Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
+        setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT );
         setContentView( R.layout.main );
 
         Button chargeButton = (Button)findViewById( R.id.charge_button );
