@@ -6,7 +6,7 @@
 // You may license this source code under the MIT License, reproduced
 // below.
 //
-// Copyright (c) 2009 Inner Fence, LLC
+// Copyright (c) 2012 Inner Fence, LLC
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation

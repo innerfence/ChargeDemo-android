@@ -8,7 +8,7 @@
 //
 // You may license this source code under the MIT License. See COPYING.
 //
-// Copyright (c) 2009 Inner Fence, LLC
+// Copyright (c) 2012 Inner Fence, LLC
 //
 package com.innerfence.chargedemo;
 
