@@ -16,8 +16,9 @@ import com.innerfence.chargeapi.ChargeRequest;
 import com.innerfence.chargeapi.ChargeResponse;
 
 import android.app.*;
-import android.content.Intent;
+import android.content.*;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -80,7 +81,34 @@ public class ChargeDemoActivity extends Activity
                 // Otherwise, we'll show an alert telling the user
                 // that Credit Card Terminal is not installed and
                 // provide a link to install it.
-                chargeRequest.submit( ChargeDemoActivity.this );
+                try
+                {
+                    chargeRequest.submit( ChargeDemoActivity.this );
+                }
+                catch( ChargeRequest.ApplicationNotInstalledException ex )
+                {
+                    new AlertDialog.Builder( ChargeDemoActivity.this )
+                        .setTitle( "Credit Card Terminal Not Installed" )
+                        .setMessage( "You'll need to install Credit Card Terminal before you can use this feature. Tap Install below to begin the installation process." )
+                        .setPositiveButton( "Install", _installCCTerminalListener )
+                        .setNegativeButton( android.R.string.cancel, null )
+                        .create()
+                        .show();
+                }
+            }
+        };
+
+    protected final DialogInterface.OnClickListener _installCCTerminalListener =
+        new DialogInterface.OnClickListener()
+        {
+            @Override
+            public final void onClick( DialogInterface dialog, int which )
+            {
+                AlertDialog d = (AlertDialog)dialog;
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(ChargeRequest.CCTERMINAL_MARKET_LINK));
+                d.getContext().startActivity(intent);
             }
         };
 

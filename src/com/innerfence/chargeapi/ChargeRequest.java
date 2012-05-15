@@ -31,15 +31,17 @@
 //
 package com.innerfence.chargeapi;
 
-import android.app.*;
+import android.app.Activity;
 import android.content.*;
 import android.content.pm.*;
-import android.net.Uri;
 import android.os.Bundle;
 
 public class ChargeRequest
 {
     public static final int CCTERMINAL_REQUEST_CODE = 0x698893c1;
+    public static final String CCTERMINAL_MARKET_LINK = "market://details?id=com.innerfence.ccterminal";
+
+    public class ApplicationNotInstalledException extends Exception { }
 
     public static class Keys
     {
@@ -93,20 +95,6 @@ public class ChargeRequest
     protected String _returnAppName;
     protected String _state;
     protected String _zip;
-
-    protected final DialogInterface.OnClickListener _installCCTerminalListener =
-        new DialogInterface.OnClickListener()
-        {
-            @Override
-            public final void onClick( DialogInterface dialog, int which )
-            {
-                AlertDialog d = (AlertDialog)dialog;
-
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("market://details?id=com.innerfence.ccterminal"));
-                d.getContext().startActivity(intent);
-            }
-        };
 
     public ChargeRequest()
     {
@@ -272,7 +260,7 @@ public class ChargeRequest
         _zip = value;
     }
 
-    public void submit( Activity callingActivity )
+    public void submit( Activity callingActivity ) throws ApplicationNotInstalledException
     {
         if( null == _returnAppName )
         {
@@ -309,21 +297,12 @@ public class ChargeRequest
         intent.setClassName("com.innerfence.ccterminal", "com.innerfence.ccterminal.TerminalActivity");
         intent.putExtras( bundle );
 
-        if( ChargeRequest.IsAppInstalled(callingActivity) )
+        if( !ChargeRequest.IsAppInstalled(callingActivity) )
         {
-            callingActivity.startActivityForResult( intent, CCTERMINAL_REQUEST_CODE );
+            throw new ApplicationNotInstalledException();
         }
-        else
-        {
-            AlertDialog d = new AlertDialog.Builder( callingActivity )
-                .setTitle( "MISSING: Credit Card Terminal" )
-                .setMessage( "You'll need to install Credit Card Terminal before you can use this feature. Tap Install below to begin the installation process." )
-                .setPositiveButton( "Install", _installCCTerminalListener )
-                .setNegativeButton( android.R.string.cancel, null )
-                .create();
 
-            d.show();
-        }
+        callingActivity.startActivityForResult( intent, CCTERMINAL_REQUEST_CODE );
     }
 }
 
