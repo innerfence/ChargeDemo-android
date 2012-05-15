@@ -15,12 +15,12 @@ package com.innerfence.chargedemo;
 import com.innerfence.chargeapi.ChargeRequest;
 import com.innerfence.chargeapi.ChargeResponse;
 
-import android.app.Activity;
+import android.app.*;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
 
 public class ChargeDemoActivity extends Activity
 {
@@ -109,6 +109,7 @@ public class ChargeDemoActivity extends Activity
             ChargeResponse chargeResponse = new ChargeResponse( data );
 
             String message;
+            String title;
             String recordId = null;
 
             Bundle extraParams = chargeResponse.getExtraParams();
@@ -122,8 +123,8 @@ public class ChargeDemoActivity extends Activity
             // response data when the charge is approved.
             if ( chargeResponse.getResponseCode() == ChargeResponse.Code.APPROVED )
             {
+                title = "Charged!";
                 message = String.format(
-                    "Charged!\n\n" +
                     "Record: %s\n" +
                     "Amount: %s %s\n" +
                     "Card Type: %s\n" +
@@ -137,23 +138,20 @@ public class ChargeDemoActivity extends Activity
             }
             else // other response code values are documented in ChargeResponse.h
             {
-                message = String.format(
-                    "Not Charged!\n\n" +
-                    "Record: %s\n" +
-                    "Code: %s\n" +
-                    "Error Message: %s",
-                    recordId,
-                    chargeResponse.getResponseCode(),
-                    chargeResponse.getErrorMessage()
-                );
+                title = "Not Charged!";
+                message = String.format( "Record: %s", recordId );
             }
 
             // Generally you would do something app-specific here,
             // like load the record specified by recordId, record the
             // success or failure, etc. Since this sample doesn't
             // actually do much, we'll just pop an alert.
-            Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
-            toast.show();
+            new AlertDialog.Builder(this)
+                .setTitle( title )
+                .setMessage( message )
+                .setNeutralButton( android.R.string.ok, null )
+                .create()
+                .show();
         }
     }
 }
