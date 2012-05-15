@@ -74,19 +74,19 @@ public class ChargeDemoActivity extends Activity
 
                 // Submitting the request will launch Credit Card
                 // Terminal from the passed in Activity
-                //
-                // If you want to handle the case where Credit Card
-                // Terminal is not installed, you can always check
-                // anytime by calling ChargeRequest.IsAppInstalled().
-                // Otherwise, we'll show an alert telling the user
-                // that Credit Card Terminal is not installed and
-                // provide a link to install it.
                 try
                 {
                     chargeRequest.submit( ChargeDemoActivity.this );
                 }
                 catch( ChargeRequest.ApplicationNotInstalledException ex )
                 {
+                    // An ApplicationNotInstalledException is thrown
+                    // when we determine that Credit Card Terminal is
+                    // not installed on the device. We suggest showing
+                    // the user an error with a easy way to download
+                    // the app by showing an AlertDialog similar to
+                    // the one below.
+
                     new AlertDialog.Builder( ChargeDemoActivity.this )
                         .setTitle( "Credit Card Terminal Not Installed" )
                         .setMessage( "You'll need to install Credit Card Terminal before you can use this feature. Tap Install below to begin the installation process." )
@@ -104,6 +104,11 @@ public class ChargeDemoActivity extends Activity
             @Override
             public final void onClick( DialogInterface dialog, int which )
             {
+                // When the user taps on Install, we'll automatically
+                // open the market link to Credit Card Terminal. The
+                // link is stored at
+                // ChargeRequest.CCTERMINAL_MARKET_LINK
+
                 AlertDialog d = (AlertDialog)dialog;
 
                 Intent intent = new Intent(Intent.ACTION_VIEW);
