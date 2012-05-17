@@ -14,71 +14,6 @@ Please visit our [Developer API
 page](http://www.innerfence.com/apps/credit-card-terminal/app-developers)
 to see how the user experience flow will be like.
 
-CHARGE REQUEST
-================
-
-The Charge request is simply a Bundle of parameters that is included
-in the Intent that starts Credit Card Terminal
-
-* `returnAppName` - your app's name, displayed to give the user context
-* `amount` - amount of the transaction (e.g. `10.99`, `1.00`, `0.90`)
-* `currency` - currecy code of amount (e.g. `USD`)
-* `email` - customer's email address for receipt
-* `firstName` - billing first name
-* `lastName` - billing last name
-* `company` - billing company name
-* `address` - billing street address
-* `city` - billing city
-* `state` - billing state or province (e.g. `TX`, `ON`)
-* `zip` - billing zip or postal code
-* `phone` - billing phone number
-* `country` - billing country code (e.g. `US`)
-* `invoiceNumber` - merchant-assigned invoice number
-* `description` - description of goods or services
-
-* `extraParams` - your own app-specific parameters Bundle
-
-CHARGE RESPONSE
-=================
-
-When the transaction is completed, cancelled, or has an error, it'll
-return to your app with a Bundle of parameters inside the result
-Intent.
-
-* `ifcc_responseType` - `approved`, `cancelled`, `declined`, or `error`
-* `ifcc_amount` - amount charged (e.g. `10.99`)
-* `ifcc_currency` - currency of amount (e.g. `USD`)
-* `ifcc_redactedCardNumber` - redacted card number (e.g. `XXXXXXXXXXXX1111`)
-* `ifcc_cardType` - card type: `Visa`, `MasterCard`, `Amex`, `Discover`, `Maestro`, `Solo`, or `Unknown`
-* `ifcc_errorMessage` - diagnostic message if `responseType` was `error`
-
-* `ifcc_extraParams` - your app-specific parameters Bundle provided in the
-  original request
-
-SETTING UP PROJECT
-==================
-
-After cloning this git repository, you'll need to run the following
-command inside the root directory:
-
-```bash
-$ android update project --name ChargeDemo --target "android-8" --path .
-```
-
-This will setup the project and generate any additional needed files
-for you to compile and install the demo app.
-
-COMPILING AND INSTALLING
-========================
-
-To compile and install, ensure your Android device is attached or the
-Android emulator is running. Then run the following command inside the
-root directory:
-
-```bash
-$ ant install
-```
-
 INTEGRATION CHECKLIST
 =====================
 
@@ -152,6 +87,71 @@ public void onActivityResult( int requestCode, int resultCode, Intent data )
         }
     }
 }
+```
+
+CHARGE REQUEST
+================
+
+The Charge request is simply a Bundle of parameters that is included
+in the Intent that starts Credit Card Terminal
+
+* `returnAppName` - your app's name, displayed to give the user context
+* `amount` - amount of the transaction (e.g. `10.99`, `1.00`, `0.90`)
+* `currency` - currecy code of amount (e.g. `USD`)
+* `email` - customer's email address for receipt
+* `firstName` - billing first name
+* `lastName` - billing last name
+* `company` - billing company name
+* `address` - billing street address
+* `city` - billing city
+* `state` - billing state or province (e.g. `TX`, `ON`)
+* `zip` - billing zip or postal code
+* `phone` - billing phone number
+* `country` - billing country code (e.g. `US`)
+* `invoiceNumber` - merchant-assigned invoice number
+* `description` - description of goods or services
+
+* `extraParams` - your own app-specific parameters Bundle
+
+CHARGE RESPONSE
+=================
+
+When the transaction is completed, cancelled, or has an error, it'll
+return to your app with a Bundle of parameters inside the result
+Intent.
+
+* `ifcc_responseType` - `approved`, `cancelled`, `declined`, or `error`
+* `ifcc_amount` - amount charged (e.g. `10.99`)
+* `ifcc_currency` - currency of amount (e.g. `USD`)
+* `ifcc_redactedCardNumber` - redacted card number (e.g. `XXXXXXXXXXXX1111`)
+* `ifcc_cardType` - card type: `Visa`, `MasterCard`, `Amex`, `Discover`, `Maestro`, `Solo`, or `Unknown`
+* `ifcc_errorMessage` - diagnostic message if `responseType` was `error`
+
+* `ifcc_extraParams` - your app-specific parameters Bundle provided in the
+  original request
+
+SETTING UP PROJECT
+==================
+
+After cloning this git repository, you'll need to run the following
+command inside the root directory:
+
+```bash
+$ android update project --name ChargeDemo --target "android-8" --path .
+```
+
+This will setup the project and generate any additional needed files
+for you to compile and install the demo app.
+
+COMPILING AND INSTALLING
+========================
+
+To compile and install, ensure your Android device is attached or the
+Android emulator is running. Then run the following command inside the
+root directory:
+
+```bash
+$ ant install
 ```
 
 FILE MANIFEST
