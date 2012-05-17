@@ -136,7 +136,7 @@ public void onActivityResult( int requestCode, int resultCode, Intent data )
         Bundle extraParams = chargeResponse.getExtraParams();
         if( null != extraParams )
         {
-            recordId = chargeResponse.getExtraParams().getString("record_id");
+            String recordId = chargeResponse.getExtraParams().getString("record_id");
         }
 
         if ( chargeResponse.getResponseCode() == ChargeResponse.Code.APPROVED )
