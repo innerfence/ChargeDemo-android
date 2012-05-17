@@ -10,6 +10,10 @@ request is generated which will launch Credit Card Terminal in order
 to accept credit card payment. When the user is done with Credit Card
 Terminal, it'll close and return to Charge Demo, the calling app.
 
+Please visit our [Developer API
+page](http://www.innerfence.com/apps/credit-card-terminal/app-developers)
+to see how the user experience flow will be like.
+
 CHARGE REQUEST
 ================
 
@@ -73,6 +77,81 @@ root directory:
 
 ```bash
 $ ant install
+```
+
+INTEGRATION CHECKLIST
+=====================
+
+* Add ChargeResponse.java and ChargeRequest.java to your Android
+  project.
+
+* Request payment by creating a ChargeRequest object, setting its
+  properties, and calling its submit method. You will also need to
+  handle ChargeResponse.ApplicationNotInstalledException in case
+  Credit Card Terminal is not installed on the device. For example:
+
+```java
+ChargeRequest chargeRequest = new ChargeRequest();
+
+// Include my record_id so it comes back with the response
+Bundle extraParams = new Bundle();
+extraParams.putString( "record_id", "123" );
+chargeRequest.setExtraParams( extraParams );
+
+chargeRequest.setAmount("50.00");
+chargeRequest.setDescription("Test transaction");
+chargeRequest.setInvoiceNumber("321");
+
+try
+{
+    // Pass in the Activity that will launch Credit Card Terminal
+    chargeRequest.submit( this );
+}
+catch( ChargeRequest.ApplicationNotInstalledException ex )
+{
+    // We suggest providing the user a link to download Credit Card
+    // Terminal when the app is not installed. For your convenience,
+    // we have provided ChargeRequest.CCTERMINAL_MARKET_LINK which is
+    // the direct link to Credit Card Terminal in the marketplace.
+}
+```
+
+* Handle charge response in your calling activity's onActivityResult
+  by creating a ChargeResponse object passing in the intent data. Use
+  the value returned by getResponseCode() to determine if the
+  transaction was successful. For example:
+
+```java
+@Override
+public void onActivityResult( int requestCode, int resultCode, Intent data )
+{
+    // The requestCode should match ChargeRequest.CCTERMINAL_REQUEST_CODE
+    // when returning from Credit Card Terminal.
+    if( requestCode == ChargeRequest.CCTERMINAL_REQUEST_CODE )
+    {
+        ChargeResponse chargeResponse = new ChargeResponse( data );
+
+        // My record_id from the request is available in the Bundle returned
+        // from getExtraParams()
+        Bundle extraParams = chargeResponse.getExtraParams();
+        if( null != extraParams )
+        {
+            recordId = chargeResponse.getExtraParams().getString("record_id");
+        }
+
+        if ( chargeResponse.getResponseCode() == ChargeResponse.Code.APPROVED )
+        {
+            // Transaction succeeded, check out these properties:
+            //  * chargeResponse.getAmount()
+            //  * chargeResponse.getCardType()
+            //  * chargeResponse.getRedactedCardNumber()
+        }
+        else
+        {
+            // Transaction failed.
+        }
+    }
+}
 ```
 
 FILE MANIFEST
