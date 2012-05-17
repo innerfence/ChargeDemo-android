@@ -72,7 +72,7 @@ public class ChargeResponse
     protected Code   _responseCode;
     protected String _responseType;
 
-    public ChargeResponse() { }
+    protected ChargeResponse() { }
 
     public ChargeResponse( Intent data )
     {
