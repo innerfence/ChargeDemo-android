@@ -96,9 +96,7 @@ public class ChargeRequest
     protected String _state;
     protected String _zip;
 
-    public ChargeRequest()
-    {
-    }
+    public ChargeRequest() { }
 
     public String getAddress()
     {

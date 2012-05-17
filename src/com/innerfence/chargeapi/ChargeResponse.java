@@ -72,6 +72,8 @@ public class ChargeResponse
     protected Code   _responseCode;
     protected String _responseType;
 
+    public ChargeResponse() { }
+
     public ChargeResponse( Intent data )
     {
         if( null == data )
