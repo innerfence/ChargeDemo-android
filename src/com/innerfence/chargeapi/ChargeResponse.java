@@ -33,6 +33,7 @@ package com.innerfence.chargeapi;
 
 import android.content.Intent;
 import android.os.Bundle;
+import java.util.regex.Pattern;
 
 public class ChargeResponse
 {
@@ -62,6 +63,13 @@ public class ChargeResponse
         public static final String DECLINED  = "declined";
         public static final String ERROR     = "error";
     }
+
+    static final String AmountPattern             = "^(0|[1-9][0-9]*)[.][0-9][0-9]$";
+    static final String CardTypePattern           = "^[A-Za-z ]{0,20}$";
+    static final String CurrencyPattern           = "^[A-Z]{3}$";
+    static final String ErrorMessagePattern       = "^.*$";
+    static final String RedactedCardNumberPattern = "^X*[0-9]{4}$";
+    static final String ResponseTypePattern       = "^[a-z]*$";
 
     protected String _amount;
     protected String _cardType;
@@ -100,6 +108,8 @@ public class ChargeResponse
         _extraParams        = bundle.getBundle(Keys.EXTRA_PARAMS);
         _redactedCardNumber = bundle.getString(Keys.REDACTED_CARD_NUMBER);
         _responseType       = bundle.getString(Keys.RESPONSE_TYPE);
+
+        validateFields();
 
         if( Type.APPROVED.equals(_responseType) )
         {
@@ -185,5 +195,23 @@ public class ChargeResponse
     public String getResponseType()
     {
         return _responseType;
+    }
+
+    public void validateFields()
+    {
+        validateField( AmountPattern,             _amount,             Keys.AMOUNT );
+        validateField( CardTypePattern,           _cardType,           Keys.CARD_TYPE );
+        validateField( CurrencyPattern,           _currency,           Keys.CURRENCY );
+        validateField( ErrorMessagePattern,       _errorMessage,       Keys.ERROR_MESSAGE );
+        validateField( RedactedCardNumberPattern, _redactedCardNumber, Keys.REDACTED_CARD_NUMBER );
+        validateField( ResponseTypePattern,       _responseType,       Keys.RESPONSE_TYPE );
+    }
+
+    public void validateField( String pattern, String value, String fieldName )
+    {
+        if( null != value && !Pattern.matches( pattern, value ) )
+        {
+            throw new IllegalArgumentException( fieldName );
+        }
     }
 }
