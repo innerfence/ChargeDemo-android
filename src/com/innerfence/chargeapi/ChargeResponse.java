@@ -56,6 +56,16 @@ public class ChargeResponse
         public static final String RESPONSE_TYPE        = "ifcc_responseType";
     }
 
+    static class Patterns
+    {
+        public static final String AMOUNT               = "^(0|[1-9][0-9]*)[.][0-9][0-9]$";
+        public static final String CARD_TYPE            = "^[A-Za-z ]{0,20}$";
+        public static final String CURRENCY             = "^[A-Z]{3}$";
+        public static final String ERROR_MESSAGE        = "^.*$";
+        public static final String REDACTED_CARD_NUMBER = "^X*[0-9]{4}$";
+        public static final String RESPONSE_TYPE        = "^[a-z]*$";
+    }
+
     public static class Type
     {
         public static final String APPROVED  = "approved";
@@ -63,13 +73,6 @@ public class ChargeResponse
         public static final String DECLINED  = "declined";
         public static final String ERROR     = "error";
     }
-
-    static final String AmountPattern             = "^(0|[1-9][0-9]*)[.][0-9][0-9]$";
-    static final String CardTypePattern           = "^[A-Za-z ]{0,20}$";
-    static final String CurrencyPattern           = "^[A-Z]{3}$";
-    static final String ErrorMessagePattern       = "^.*$";
-    static final String RedactedCardNumberPattern = "^X*[0-9]{4}$";
-    static final String ResponseTypePattern       = "^[a-z]*$";
 
     protected String _amount;
     protected String _cardType;
@@ -199,12 +202,12 @@ public class ChargeResponse
 
     public void validateFields()
     {
-        validateField( AmountPattern,             _amount,             Keys.AMOUNT );
-        validateField( CardTypePattern,           _cardType,           Keys.CARD_TYPE );
-        validateField( CurrencyPattern,           _currency,           Keys.CURRENCY );
-        validateField( ErrorMessagePattern,       _errorMessage,       Keys.ERROR_MESSAGE );
-        validateField( RedactedCardNumberPattern, _redactedCardNumber, Keys.REDACTED_CARD_NUMBER );
-        validateField( ResponseTypePattern,       _responseType,       Keys.RESPONSE_TYPE );
+        validateField( Patterns.AMOUNT,               _amount,             Keys.AMOUNT );
+        validateField( Patterns.CARD_TYPE,            _cardType,           Keys.CARD_TYPE );
+        validateField( Patterns.CURRENCY,             _currency,           Keys.CURRENCY );
+        validateField( Patterns.ERROR_MESSAGE,        _errorMessage,       Keys.ERROR_MESSAGE );
+        validateField( Patterns.REDACTED_CARD_NUMBER, _redactedCardNumber, Keys.REDACTED_CARD_NUMBER );
+        validateField( Patterns.RESPONSE_TYPE,        _responseType,       Keys.RESPONSE_TYPE );
     }
 
     public void validateField( String pattern, String value, String fieldName )
