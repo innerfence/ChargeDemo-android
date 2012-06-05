@@ -77,6 +77,7 @@ public void onActivityResult( int requestCode, int resultCode, Intent data )
         if ( chargeResponse.getResponseCode() == ChargeResponse.Code.APPROVED )
         {
             // Transaction succeeded, check out these properties:
+            //  * chargeResponse.getTransactionId()
             //  * chargeResponse.getAmount()
             //  * chargeResponse.getCardType()
             //  * chargeResponse.getRedactedCardNumber()
@@ -121,6 +122,7 @@ return to your app with a Bundle of parameters inside the result
 Intent.
 
 * `ifcc_responseType` - `approved`, `cancelled`, `declined`, or `error`
+* `ifcc_transactionId` - transaction id (e.g. `100001`)
 * `ifcc_amount` - amount charged (e.g. `10.99`)
 * `ifcc_currency` - currency of amount (e.g. `USD`)
 * `ifcc_redactedCardNumber` - redacted card number (e.g. `XXXXXXXXXXXX1111`)

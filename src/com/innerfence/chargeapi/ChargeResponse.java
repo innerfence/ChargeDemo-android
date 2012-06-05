@@ -54,6 +54,7 @@ public class ChargeResponse
         public static final String EXTRA_PARAMS         = "ifcc_extraParams";
         public static final String REDACTED_CARD_NUMBER = "ifcc_redactedCardNumber";
         public static final String RESPONSE_TYPE        = "ifcc_responseType";
+        public static final String TRANSACTION_ID       = "ifcc_transactionId";
     }
 
     static class Patterns
@@ -64,6 +65,7 @@ public class ChargeResponse
         public static final String ERROR_MESSAGE        = "^.*$";
         public static final String REDACTED_CARD_NUMBER = "^X*[0-9]{4}$";
         public static final String RESPONSE_TYPE        = "^[a-z]*$";
+        public static final String TRANSACTION_ID       = "^.{1,255}";
     }
 
     public static class Type
@@ -82,6 +84,7 @@ public class ChargeResponse
     protected String _redactedCardNumber;
     protected Code   _responseCode;
     protected String _responseType;
+    protected String _transactionId;
 
     protected ChargeResponse() { }
 
@@ -111,6 +114,7 @@ public class ChargeResponse
         _extraParams        = bundle.getBundle(Keys.EXTRA_PARAMS);
         _redactedCardNumber = bundle.getString(Keys.REDACTED_CARD_NUMBER);
         _responseType       = bundle.getString(Keys.RESPONSE_TYPE);
+        _transactionId      = bundle.getString(Keys.TRANSACTION_ID);
 
         validateFields();
 
@@ -198,6 +202,24 @@ public class ChargeResponse
     public String getResponseType()
     {
         return _responseType;
+    }
+
+    // transactionId - The transaction ID of the transaction if the charge
+    // was successful.
+    //
+    // Previous versions of the API didn't return a transaction ID, so null
+    // is a possible return value even for a successful transaction. If
+    // you do need the transaction ID, you may want to request the user to
+    // update their version of Credit Card Terminal.
+    //
+    // WARNING - The transaction ID format differs between gateways and
+    // we've provided a very relaxed validation limiting it to a max of
+    // 255 characters; you must be wary of SQL injection and similar
+    // malicious data attacks. As such, you will should ensure whatever
+    // you use the transaction ID for properly escapes it.
+    public String getTransactionId()
+    {
+        return _transactionId;
     }
 
     public void validateFields()

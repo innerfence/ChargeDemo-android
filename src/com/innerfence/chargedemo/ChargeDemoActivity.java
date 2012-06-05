@@ -159,10 +159,12 @@ public class ChargeDemoActivity extends Activity
                 title = "Charged!";
                 message = String.format(
                     "Record: %s\n" +
+                    "Transaction ID: %s\n" +
                     "Amount: %s %s\n" +
                     "Card Type: %s\n" +
                     "Redacted Number: %s",
                     recordId,
+                    chargeResponse.getTransactionId(),
                     chargeResponse.getAmount(),
                     chargeResponse.getCurrency(),
                     chargeResponse.getCardType(),
