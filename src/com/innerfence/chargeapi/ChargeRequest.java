@@ -60,6 +60,7 @@ public class ChargeRequest
         public static final String PHONE           = "phone";
         public static final String RETURN_APP_NAME = "returnAppName";
         public static final String STATE           = "state";
+        public static final String TAX_RATE        = "taxRate";
         public static final String ZIP             = "zip";
     }
 
@@ -94,6 +95,7 @@ public class ChargeRequest
     protected String _phone;
     protected String _returnAppName;
     protected String _state;
+    protected String _taxRate;
     protected String _zip;
 
     public ChargeRequest() { }
@@ -248,6 +250,16 @@ public class ChargeRequest
         _state = value;
     }
 
+    public String getTaxRate()
+    {
+        return _taxRate;
+    }
+
+    public void setTaxRate( String value )
+    {
+        _taxRate = value;
+    }
+
     public String getZip()
     {
         return _zip;
@@ -288,6 +300,7 @@ public class ChargeRequest
         bundle.putString( Keys.LAST_NAME,       _lastName );
         bundle.putString( Keys.PHONE,           _phone );
         bundle.putString( Keys.STATE,           _state );
+        bundle.putString( Keys.TAX_RATE,        _taxRate );
         bundle.putString( Keys.ZIP,             _zip );
         bundle.putString( Keys.RETURN_APP_NAME, _returnAppName );
 

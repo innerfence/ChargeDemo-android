@@ -37,6 +37,12 @@ chargeRequest.setAmount("50.00");
 chargeRequest.setDescription("Test transaction");
 chargeRequest.setInvoiceNumber("321");
 
+// Include a tax rate if you want Credit Card terminal to calculate
+// sales tax. If you pass in "default", we'll use the default sales
+// tax preset by the user. If you leave it as null, we’ll hide the
+// sales tax option from the user.
+chargeRequest.setTaxRate( "8.5" );
+
 try
 {
     // Pass in the Activity that will launch Credit Card Terminal
@@ -78,7 +84,10 @@ public void onActivityResult( int requestCode, int resultCode, Intent data )
         {
             // Transaction succeeded, check out these properties:
             //  * chargeResponse.getTransactionId()
-            //  * chargeResponse.getAmount()
+            //  * chargeResponse.getAmount() (includes tax and tip)
+            //  * chargeResponse.getTaxAmount()
+            //  * chargeResponse.getTaxRate()
+            //  * chargeResponse.getTipAmount()
             //  * chargeResponse.getCardType()
             //  * chargeResponse.getRedactedCardNumber()
         }
@@ -98,6 +107,7 @@ in the Intent that starts Credit Card Terminal
 
 * `returnAppName` - your app's name, displayed to give the user context
 * `amount` - amount of the transaction (e.g. `10.99`, `1.00`, `0.90`)
+* `taxRate` - sales tax rate to apply to amount (e.g. `8`, `8.5`, `8.25`, `8.125`)
 * `currency` - currecy code of amount (e.g. `USD`)
 * `email` - customer's email address for receipt
 * `firstName` - billing first name
@@ -124,6 +134,9 @@ Intent.
 * `ifcc_responseType` - `approved`, `cancelled`, `declined`, or `error`
 * `ifcc_transactionId` - transaction id (e.g. `100001`)
 * `ifcc_amount` - amount charged (e.g. `10.99`)
+* `ifcc_taxAmount` - tax portion from amount (e.g. `0.93`)
+* `ifcc_taxRate` - tax rate applied to original amount (e.g. `8.5`)
+* `ifcc_tipAmount` - tip portion from amount (e.g. `1.50`)
 * `ifcc_currency` - currency of amount (e.g. `USD`)
 * `ifcc_redactedCardNumber` - redacted card number (e.g. `XXXXXXXXXXXX1111`)
 * `ifcc_cardType` - card type: `Visa`, `MasterCard`, `Amex`, `Discover`, `Maestro`, `Solo`, or `Unknown`

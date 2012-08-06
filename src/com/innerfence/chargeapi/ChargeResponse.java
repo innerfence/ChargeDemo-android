@@ -54,6 +54,9 @@ public class ChargeResponse
         public static final String EXTRA_PARAMS         = "ifcc_extraParams";
         public static final String REDACTED_CARD_NUMBER = "ifcc_redactedCardNumber";
         public static final String RESPONSE_TYPE        = "ifcc_responseType";
+        public static final String TAX_AMOUNT           = "ifcc_taxAmount";
+        public static final String TAX_RATE             = "ifcc_taxRate";
+        public static final String TIP_AMOUNT           = "ifcc_tipAmount";
         public static final String TRANSACTION_ID       = "ifcc_transactionId";
     }
 
@@ -65,6 +68,9 @@ public class ChargeResponse
         public static final String ERROR_MESSAGE        = "^.*$";
         public static final String REDACTED_CARD_NUMBER = "^X*[0-9]{4}$";
         public static final String RESPONSE_TYPE        = "^[a-z]*$";
+        public static final String TAX_AMOUNT           = "^(0|[1-9][0-9]*)[.][0-9][0-9]$";
+        public static final String TAX_RATE             = "^([0-9]{1-2})([.][0-9]{1,3})?$";
+        public static final String TIP_AMOUNT           = "^(0|[1-9][0-9]*)[.][0-9][0-9]$";
         public static final String TRANSACTION_ID       = "^.{1,255}";
     }
 
@@ -84,6 +90,9 @@ public class ChargeResponse
     protected String _redactedCardNumber;
     protected Code   _responseCode;
     protected String _responseType;
+    protected String _taxAmount;
+    protected String _taxRate;
+    protected String _tipAmount;
     protected String _transactionId;
 
     protected ChargeResponse() { }
@@ -114,6 +123,9 @@ public class ChargeResponse
         _extraParams        = bundle.getBundle(Keys.EXTRA_PARAMS);
         _redactedCardNumber = bundle.getString(Keys.REDACTED_CARD_NUMBER);
         _responseType       = bundle.getString(Keys.RESPONSE_TYPE);
+        _taxAmount          = bundle.getString(Keys.TAX_AMOUNT);
+        _taxRate            = bundle.getString(Keys.TAX_RATE);
+        _tipAmount          = bundle.getString(Keys.TIP_AMOUNT);
         _transactionId      = bundle.getString(Keys.TRANSACTION_ID);
 
         validateFields();
@@ -136,9 +148,10 @@ public class ChargeResponse
         }
     }
 
-    // amount - The amount that was charged to the card. This is a string,
-    // which is a currency value to two decimal places like @"50.00". This
-    // property will only be set if responseCode is Accepted.
+    // amount - The amount that was charged to the card. This is a
+    // string, which is a currency value to two decimal places like
+    // "50.00". This property will only be set if responseCode is
+    // Accepted. This amount includes tax and tip.
     public String getAmount()
     {
         return _amount;
@@ -147,16 +160,16 @@ public class ChargeResponse
     // cardType - The type of card that was charged. This will be
     // something like "Visa", "MasterCard", "American Express", or
     // "Discover". This property will only be set if responseCode is
-    // Accepted. In the case that the card type is unknown, this property
-    // will be nil.
+    // Accepted. In the case that the card type is unknown, this
+    // property will be nil.
     public String getCardType()
     {
         return _cardType;
     }
 
     // currency - The ISO 4217 currency code for the transaction
-    // amount. For example, "USD" for US Dollars. This property will be
-    // set when amount is set.
+    // amount. For example, "USD" for US Dollars. This property will
+    // be set when amount is set.
     public String getCurrency()
     {
         return _currency;
@@ -184,9 +197,9 @@ public class ChargeResponse
         return _extraParams;
     }
 
-    // redactedCardNumber - This string is the credit card number with all
-    // but the last four digits replaced by 'X'. This property will only
-    // be set if responseCode is Accepted.
+    // redactedCardNumber - This string is the credit card number with
+    // all but the last four digits replaced by 'X'. This property
+    // will only be set if responseCode is Accepted.
     public String getRedactedCardNumber()
     {
         return _redactedCardNumber;
@@ -202,6 +215,31 @@ public class ChargeResponse
     public String getResponseType()
     {
         return _responseType;
+    }
+
+    // taxAmount - The tax portion of amount. This is a string, which
+    // is a currency value to two decimal places like "4.06". This
+    // property will only be set if sales tax was applied.
+    public String getTaxAmount()
+    {
+        return _taxAmount;
+    }
+
+    // taxRate - The tax rate percentage that was applied to the
+    // original amount. This is a string, which is a number between 0
+    // and 99.999 with upto three decimal places like "8.125". This
+    // property will only be set if sales tax was applied.
+    public String getTaxRate()
+    {
+        return _taxRate;
+    }
+
+    // tipAmount - The tip portion of amount. This is a string, which
+    // is a currency value to two decimal places like "10.00". This
+    // property will only be set if a tip was provided.
+    public String getTipAmount()
+    {
+        return _tipAmount;
     }
 
     // transactionId - The transaction ID of the transaction if the charge
