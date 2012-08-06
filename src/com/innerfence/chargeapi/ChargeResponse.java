@@ -69,7 +69,7 @@ public class ChargeResponse
         public static final String REDACTED_CARD_NUMBER = "^X*[0-9]{4}$";
         public static final String RESPONSE_TYPE        = "^[a-z]*$";
         public static final String TAX_AMOUNT           = "^(0|[1-9][0-9]*)[.][0-9][0-9]$";
-        public static final String TAX_RATE             = "^([0-9]{1-2})([.][0-9]{1,3})?$";
+        public static final String TAX_RATE             = "^[0-9]{1,2}([.][0-9]{1,3})?$";
         public static final String TIP_AMOUNT           = "^(0|[1-9][0-9]*)[.][0-9][0-9]$";
         public static final String TRANSACTION_ID       = "^.{1,255}";
     }
