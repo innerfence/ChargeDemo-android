@@ -268,6 +268,10 @@ public class ChargeResponse
         validateField( Patterns.ERROR_MESSAGE,        _errorMessage,       Keys.ERROR_MESSAGE );
         validateField( Patterns.REDACTED_CARD_NUMBER, _redactedCardNumber, Keys.REDACTED_CARD_NUMBER );
         validateField( Patterns.RESPONSE_TYPE,        _responseType,       Keys.RESPONSE_TYPE );
+        validateField( Patterns.TAX_AMOUNT,           _taxAmount,          Keys.TAX_AMOUNT );
+        validateField( Patterns.TAX_RATE,             _taxRate,            Keys.TAX_RATE );
+        validateField( Patterns.TIP_AMOUNT,           _tipAmount,          Keys.TIP_AMOUNT );
+        validateField( Patterns.TRANSACTION_ID,       _transactionId,      Keys.TRANSACTION_ID );
     }
 
     public void validateField( String pattern, String value, String fieldName )
