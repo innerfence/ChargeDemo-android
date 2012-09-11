@@ -45,23 +45,24 @@ public class ChargeRequest
 
     public static class Keys
     {
-        public static final String ADDRESS         = "address";
-        public static final String AMOUNT          = "amount";
-        public static final String CITY            = "city";
-        public static final String COMPANY         = "company";
-        public static final String COUNTRY         = "country";
-        public static final String CURRENCY        = "currency";
-        public static final String DESCRIPTION     = "description";
-        public static final String EMAIL           = "email";
-        public static final String EXTRA_PARAMS    = "extraParams";
-        public static final String FIRST_NAME      = "firstName";
-        public static final String INVOICE_NUMBER  = "invoiceNumber";
-        public static final String LAST_NAME       = "lastName";
-        public static final String PHONE           = "phone";
-        public static final String RETURN_APP_NAME = "returnAppName";
-        public static final String STATE           = "state";
-        public static final String TAX_RATE        = "taxRate";
-        public static final String ZIP             = "zip";
+        public static final String ADDRESS            = "address";
+        public static final String AMOUNT             = "amount";
+        public static final String CITY               = "city";
+        public static final String COMPANY            = "company";
+        public static final String COUNTRY            = "country";
+        public static final String CURRENCY           = "currency";
+        public static final String DESCRIPTION        = "description";
+        public static final String EMAIL              = "email";
+        public static final String EXTRA_PARAMS       = "extraParams";
+        public static final String FIRST_NAME         = "firstName";
+        public static final String INVOICE_NUMBER     = "invoiceNumber";
+        public static final String LAST_NAME          = "lastName";
+        public static final String PHONE              = "phone";
+        public static final String RETURN_APP_NAME    = "returnAppName";
+        public static final String RETURN_IMMEDIATELY = "returnImmediately";
+        public static final String STATE              = "state";
+        public static final String TAX_RATE           = "taxRate";
+        public static final String ZIP                = "zip";
     }
 
     public static boolean IsAppInstalled( Context context )
@@ -94,6 +95,7 @@ public class ChargeRequest
     protected String _lastName;
     protected String _phone;
     protected String _returnAppName;
+    protected String _returnImmediately;
     protected String _state;
     protected String _taxRate;
     protected String _zip;
@@ -240,6 +242,16 @@ public class ChargeRequest
         _returnAppName = value;
     }
 
+    public String getReturnImmediately()
+    {
+        return _returnImmediately;
+    }
+
+    public void setReturnImmediately( String value )
+    {
+        _returnImmediately = value;
+    }
+
     public String getState()
     {
         return _state;
@@ -286,23 +298,24 @@ public class ChargeRequest
         }
 
         Bundle bundle = new Bundle();
-        bundle.putString( Keys.ADDRESS,         _address );
-        bundle.putString( Keys.AMOUNT,          _amount );
-        bundle.putString( Keys.CITY,            _city );
-        bundle.putString( Keys.COMPANY,         _company );
-        bundle.putString( Keys.COUNTRY,         _country );
-        bundle.putString( Keys.CURRENCY,        _currency );
-        bundle.putString( Keys.DESCRIPTION,     _description );
-        bundle.putString( Keys.EMAIL,           _email );
-        bundle.putBundle( Keys.EXTRA_PARAMS,    _extraParams );
-        bundle.putString( Keys.FIRST_NAME,      _firstName );
-        bundle.putString( Keys.INVOICE_NUMBER,  _invoiceNumber );
-        bundle.putString( Keys.LAST_NAME,       _lastName );
-        bundle.putString( Keys.PHONE,           _phone );
-        bundle.putString( Keys.STATE,           _state );
-        bundle.putString( Keys.TAX_RATE,        _taxRate );
-        bundle.putString( Keys.ZIP,             _zip );
-        bundle.putString( Keys.RETURN_APP_NAME, _returnAppName );
+        bundle.putString( Keys.ADDRESS,            _address );
+        bundle.putString( Keys.AMOUNT,             _amount );
+        bundle.putString( Keys.CITY,               _city );
+        bundle.putString( Keys.COMPANY,            _company );
+        bundle.putString( Keys.COUNTRY,            _country );
+        bundle.putString( Keys.CURRENCY,           _currency );
+        bundle.putString( Keys.DESCRIPTION,        _description );
+        bundle.putString( Keys.EMAIL,              _email );
+        bundle.putBundle( Keys.EXTRA_PARAMS,       _extraParams );
+        bundle.putString( Keys.FIRST_NAME,         _firstName );
+        bundle.putString( Keys.INVOICE_NUMBER,     _invoiceNumber );
+        bundle.putString( Keys.LAST_NAME,          _lastName );
+        bundle.putString( Keys.PHONE,              _phone );
+        bundle.putString( Keys.STATE,              _state );
+        bundle.putString( Keys.TAX_RATE,           _taxRate );
+        bundle.putString( Keys.ZIP,                _zip );
+        bundle.putString( Keys.RETURN_APP_NAME,    _returnAppName );
+        bundle.putString( Keys.RETURN_IMMEDIATELY, _returnImmediately );
 
         Intent intent = new Intent();
         intent.setClassName("com.innerfence.ccterminal", "com.innerfence.ccterminal.TerminalActivity");
