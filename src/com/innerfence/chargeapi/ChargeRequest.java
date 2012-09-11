@@ -47,6 +47,7 @@ public class ChargeRequest
     {
         public static final String ADDRESS            = "address";
         public static final String AMOUNT             = "amount";
+        public static final String AMOUNT_FIXED       = "amountFixed";
         public static final String CITY               = "city";
         public static final String COMPANY            = "company";
         public static final String COUNTRY            = "country";
@@ -83,6 +84,7 @@ public class ChargeRequest
 
     protected String _address;
     protected String _amount;
+    protected String _amountFixed;
     protected String _city;
     protected String _company;
     protected String _country;
@@ -120,6 +122,16 @@ public class ChargeRequest
     public void setAmount( String value )
     {
         _amount = value;
+    }
+
+    public String getAmountFixed()
+    {
+        return _amountFixed;
+    }
+
+    public void setAmountFixed( String value )
+    {
+        _amountFixed = value;
     }
 
     public String getCity()
@@ -300,6 +312,7 @@ public class ChargeRequest
         Bundle bundle = new Bundle();
         bundle.putString( Keys.ADDRESS,            _address );
         bundle.putString( Keys.AMOUNT,             _amount );
+        bundle.putString( Keys.AMOUNT_FIXED,       _amountFixed );
         bundle.putString( Keys.CITY,               _city );
         bundle.putString( Keys.COMPANY,            _company );
         bundle.putString( Keys.COUNTRY,            _country );
