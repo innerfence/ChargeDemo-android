@@ -106,7 +106,9 @@ The Charge request is simply a Bundle of parameters that is included
 in the Intent that starts Credit Card Terminal
 
 * `returnAppName` - your app's name, displayed to give the user context
+* `returnImmediately` - if set to 1, we will return to your app immediately instead of waiting for the end user to tap through the “Approved” screen
 * `amount` - amount of the transaction (e.g. `10.99`, `1.00`, `0.90`)
+* `amountFixed` - if set to 1, the amount (subtotal) will be unchangable. If tips or sales tax is enabled, the final amount can still differ
 * `taxRate` - sales tax rate to apply to amount (e.g. `8`, `8.5`, `8.25`, `8.125`)
 * `currency` - currecy code of amount (e.g. `USD`)
 * `email` - customer's email address for receipt
