@@ -65,7 +65,6 @@ public class ChargeResponse
         public static final String AMOUNT               = "^(0|[1-9][0-9]*)[.][0-9][0-9]$";
         public static final String CARD_TYPE            = "^[A-Za-z ]{0,20}$";
         public static final String CURRENCY             = "^[A-Z]{3}$";
-        public static final String ERROR_MESSAGE        = "^.*$";
         public static final String REDACTED_CARD_NUMBER = "^X*[0-9]{4}$";
         public static final String RESPONSE_TYPE        = "^[a-z]*$";
         public static final String TAX_AMOUNT           = "^(0|[1-9][0-9]*)[.][0-9][0-9]$";
@@ -265,7 +264,6 @@ public class ChargeResponse
         validateField( Patterns.AMOUNT,               _amount,             Keys.AMOUNT );
         validateField( Patterns.CARD_TYPE,            _cardType,           Keys.CARD_TYPE );
         validateField( Patterns.CURRENCY,             _currency,           Keys.CURRENCY );
-        validateField( Patterns.ERROR_MESSAGE,        _errorMessage,       Keys.ERROR_MESSAGE );
         validateField( Patterns.REDACTED_CARD_NUMBER, _redactedCardNumber, Keys.REDACTED_CARD_NUMBER );
         validateField( Patterns.RESPONSE_TYPE,        _responseType,       Keys.RESPONSE_TYPE );
         validateField( Patterns.TAX_AMOUNT,           _taxAmount,          Keys.TAX_AMOUNT );
