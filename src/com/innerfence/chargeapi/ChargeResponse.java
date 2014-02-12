@@ -71,7 +71,7 @@ public class ChargeResponse
         public static final String TAX_AMOUNT           = "^(0|[1-9][0-9]*)[.][0-9][0-9]$";
         public static final String TAX_RATE             = "^[0-9]{1,2}([.][0-9]{1,3})?$";
         public static final String TIP_AMOUNT           = "^(0|[1-9][0-9]*)[.][0-9][0-9]$";
-        public static final String TRANSACTION_ID       = "^.{1,255}";
+        public static final String TRANSACTION_ID       = "^.{1,255}$";
     }
 
     public static class Type
