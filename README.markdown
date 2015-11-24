@@ -18,7 +18,8 @@ INTEGRATION CHECKLIST
 =====================
 
 * Add ChargeResponse.java and ChargeRequest.java to your Android
-  project.
+  project. You can just add the files if you like, or you can copy the
+  chargeapi module and add that as a dependency.
 
 * Request payment by creating a ChargeRequest object, setting its
   properties, and calling its submit method. You will also need to
@@ -183,23 +184,13 @@ This file.
 A copy of the MIT License, under which you may reuse any of the source
 code in this sample.
 
-* src/com/innerfence/chargeapi/ChargeResponse.java
-* src/com/innerfence/chargeapi/ChargeRequest.java
+* chargeapi/src/main/java/com/innerfence/chargeapi/ChargeResponse.java
+* chargeapi/src/main/java/com/innerfence/chargeapi/ChargeRequest.java
 
 The ChargeRequest and ChargeResponse classes. Copy these files into
 your own Android project. There are no external dependencies other
 than the android libraries.
 
-* src/com/innerfence/chargedemo/ChargeDemoActivity.java
-* res/layout/main.xml
-
-A very simple activity that provides a single Charge button. When the
-button is tapped, an ChargeRequest object is created and submitted.
-
-* AndroidManifest.xml
-* src/com/innerfence/chargedemo/ChargeDemoApplication.java
-* res/drawable/icon.png
-* res/values/string.xml
-
-These are files needed so that it can be compiled into an Android app.
+The rest of the files comprise a simple demonstration android app
+using the chargeapi classes.
 
