@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "29.0.3"
 
     // defaultConfig {
     //     applicationId "com.innerfence.chargedemo"
