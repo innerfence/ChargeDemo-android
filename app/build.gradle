@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 33
+    buildToolsVersion '33.0.2'
+    namespace 'com.innerfence.chargedemo'
 
     defaultConfig {
         applicationId "com.innerfence.chargedemo"
         minSdkVersion 8
-        targetSdkVersion 23
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
     }
@@ -20,6 +21,6 @@ android {
     }
 
     dependencies {
-        compile project(':chargeapi')
+        implementation project(':chargeapi')
     }
 }
