@@ -1,14 +1,22 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application' version '8.1.2'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion '33.0.2'
+    compileSdkVersion 34
+    buildToolsVersion '34.0.0'
     namespace 'com.innerfence.chargedemo'
 
     defaultConfig {
         applicationId "com.innerfence.chargedemo"
         minSdkVersion 8
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
     }

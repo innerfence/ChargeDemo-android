@@ -1,7 +1,15 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library' version '8.1.2'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion '33.0.2'
+    compileSdkVersion 34
+    buildToolsVersion '34.0.0'
     namespace 'com.innerfence.chargeapi'
 }
