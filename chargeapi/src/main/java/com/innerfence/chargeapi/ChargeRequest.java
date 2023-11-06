@@ -66,6 +66,10 @@ public class ChargeRequest
         public static final String ZIP                = "zip";
     }
 
+    // Note: AndroidManifest.xml must include:
+    //   <queries>
+    //     <package android:name="com.innerfence.ccterminal" />
+    //   </queries>
     public static boolean IsAppInstalled( Context context )
     {
         try
