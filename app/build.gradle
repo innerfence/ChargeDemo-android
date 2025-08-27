@@ -9,7 +9,7 @@ java {
 }
 
 android {
-    compileSdkVersion 34
+    compileSdkVersion 35
     buildToolsVersion '35.0.1'
     namespace 'com.innerfence.chargedemo'
 
