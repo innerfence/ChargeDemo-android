@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.library' version '8.1.2'
+    id 'com.android.library' version '8.7.0'
 }
 
 java {
@@ -12,4 +12,9 @@ android {
     compileSdkVersion 34
     buildToolsVersion '34.0.0'
     namespace 'com.innerfence.chargeapi'
+
+    defaultConfig {
+        minSdkVersion 30
+        targetSdkVersion 34
+    }
 }
