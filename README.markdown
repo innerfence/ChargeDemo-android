@@ -151,26 +151,31 @@ Intent.
 SETTING UP PROJECT
 ==================
 
-After cloning this git repository, you'll need to run the following
-command inside the root directory:
-
-```bash
-$ android update project --name ChargeDemo --target "android-8" --path .
-```
-
-This will setup the project and generate any additional needed files
-for you to compile and install the demo app.
+Use JDK 17, Android SDK Platform 35, and Build-Tools 35.0.1. Set
+`ANDROID_HOME` to the SDK location or set `sdk.dir` in an untracked
+`local.properties` file. The checked-in wrapper uses Gradle 8.9 with
+Android Gradle Plugin 8.7.0. The demo requires Android API 30 or later.
 
 COMPILING AND INSTALLING
 ========================
 
-To compile and install, ensure your Android device is attached or the
-Android emulator is running. Then run the following command inside the
-root directory:
+Run these commands from the ChargeDemo repository root to compile the
+library and demo:
 
 ```bash
-$ ant install
+./gradlew :chargeapi:assembleDebug :app:assembleDebug
 ```
+
+To install the demo on a connected test device or emulator:
+
+```bash
+./gradlew :app:installDebug
+```
+
+The Credit Card Terminal app must also be installed to exercise the payment
+flow. When this repository is included as a submodule, the parent project's
+applicable guidance also applies. See `AGENTS.md` for maintenance guidance
+and verification pointers.
 
 FILE MANIFEST
 =============
