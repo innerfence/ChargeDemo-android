@@ -18,7 +18,9 @@ check the source when changing the contract.
 
 # Build and verification
 
-Use JDK 17, SDK 35, and build-tools 35.0.1. From this repository's directory:
+Use JDK 17, Gradle 8.11.1, AGP 8.10.1, SDK 36, and build-tools 36.1.0.
+Use current Platform-Tools (verified with 37.0.1); minimum API remains 30.
+From this repository's directory:
 
 ```sh
 ./gradlew :chargeapi:assembleDebug :app:assembleDebug

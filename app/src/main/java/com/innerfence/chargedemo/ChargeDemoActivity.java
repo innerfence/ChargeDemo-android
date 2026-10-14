@@ -18,9 +18,12 @@ import com.innerfence.chargeapi.ChargeResponse;
 import android.app.*;
 import android.content.*;
 import android.content.pm.ActivityInfo;
+import android.graphics.Insets;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowInsets;
 import android.widget.Button;
 
 public class ChargeDemoActivity extends Activity
@@ -121,6 +124,25 @@ public class ChargeDemoActivity extends Activity
     public void onCreate( Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
+        // Android 15 retains the theme opt-out; Android 16 ignores it.
+        if( Build.VERSION.SDK_INT >= 36 )
+        {
+            // Inset the native action bar and content together, including the
+            // keyboard. Consume the insets to avoid applying them twice.
+            getWindow().getDecorView().setOnApplyWindowInsetsListener(
+                new View.OnApplyWindowInsetsListener()
+                {
+                    @Override
+                    public WindowInsets onApplyWindowInsets( View view, WindowInsets windowInsets )
+                    {
+                        Insets insets = windowInsets.getInsets( WindowInsets.Type.systemBars() |
+                                                               WindowInsets.Type.displayCutout() |
+                                                               WindowInsets.Type.ime() );
+                        view.setPadding( insets.left, insets.top, insets.right, insets.bottom );
+                        return WindowInsets.CONSUMED;
+                    }
+                } );
+        }
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT );
         setContentView( R.layout.main );
 

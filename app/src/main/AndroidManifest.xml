@@ -19,6 +19,12 @@
       android:icon="@drawable/icon"
       android:theme="@style/AppTheme"
       >
+    <!-- Preserve this demo's portrait layout for API 36. This temporary opt-out
+         stops working when targeting API 37. -->
+    <property
+        android:name="android.window.PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY"
+        android:value="true"
+        />
     <activity
         android:name=".ChargeDemoActivity"
         android:label="@string/app_name"

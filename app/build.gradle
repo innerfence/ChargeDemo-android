@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application' version '8.7.0'
+    id 'com.android.application' version '8.10.1'
 }
 
 java {
@@ -9,14 +9,14 @@ java {
 }
 
 android {
-    compileSdkVersion 35
-    buildToolsVersion '35.0.1'
+    compileSdkVersion 36
+    buildToolsVersion '36.1.0'
     namespace 'com.innerfence.chargedemo'
 
     defaultConfig {
         applicationId "com.innerfence.chargedemo"
         minSdkVersion 30
-        targetSdkVersion 35
+        targetSdkVersion 36
         versionCode 1
         versionName "1.0"
     }

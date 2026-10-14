@@ -151,10 +151,16 @@ Intent.
 SETTING UP PROJECT
 ==================
 
-Use JDK 17, Android SDK Platform 35, and Build-Tools 35.0.1. Set
-`ANDROID_HOME` to the SDK location or set `sdk.dir` in an untracked
-`local.properties` file. The checked-in wrapper uses Gradle 8.9 with
-Android Gradle Plugin 8.7.0. The demo requires Android API 30 or later.
+Use JDK 17, Android SDK Platform 36, Build-Tools 36.1.0, and current
+Platform-Tools (verified with 37.0.1). Set `ANDROID_HOME` to the SDK location
+or set `sdk.dir` in an untracked `local.properties` file. The checked-in
+wrapper uses Gradle 8.11.1 with Android Gradle Plugin 8.10.1. The demo requires
+Android API 30 or later and compiles/targets API 36. Android Studio is not
+required; install the SDK packages with the command-line tools:
+
+```bash
+sdkmanager "platforms;android-36" "build-tools;36.1.0" "platform-tools"
+```
 
 COMPILING AND INSTALLING
 ========================
